@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="QeRadioBoxHeading">
+    <span jhiTranslate="vegaJhApp.qeRadioBox.home.title">QeRadioBoxes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeRadioBox.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qe-radio-box"
+        [routerLink]="['/qe-radio-box/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeRadioBox.home.createLabel"> Genera un nuovo Qe Radio Box </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="qeRadioBoxes?.length === 0">
+    <span jhiTranslate="vegaJhApp.qeRadioBox.home.notFound">No Qe Radio Boxes found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="qeRadioBoxes && qeRadioBoxes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioBox.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="label">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioBox.label">Label</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="boxvalue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioBox.boxvalue">Boxvalue</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="checked">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioBox.checked">Checked</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="position">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioBox.position">Position</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qeRadioGroup.id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioBox.qeRadioGroup">Qe Radio Group</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qeRadioBox of qeRadioBoxes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/qe-radio-box', qeRadioBox.id, 'view']">{{ qeRadioBox.id }}</a>
+          </td>
+          <td>{{ qeRadioBox.label }}</td>
+          <td>{{ qeRadioBox.boxvalue }}</td>
+          <td>{{ qeRadioBox.checked }}</td>
+          <td>{{ qeRadioBox.position }}</td>
+          <td>
+            <div *ngIf="qeRadioBox.qeRadioGroup">
+              <a [routerLink]="['/qe-radio-group', qeRadioBox.qeRadioGroup.id, 'view']">{{ qeRadioBox.qeRadioGroup.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/qe-radio-box', qeRadioBox.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/qe-radio-box', qeRadioBox.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+              </button>
+
+              <button type="submit" (click)="delete(qeRadioBox)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

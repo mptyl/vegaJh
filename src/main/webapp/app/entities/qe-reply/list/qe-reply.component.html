@@ -1,0 +1,246 @@
+<div>
+  <h2 id="page-heading" data-cy="QeReplyHeading">
+    <span jhiTranslate="vegaJhApp.qeReply.home.title">QeReplies</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeReply.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qe-reply"
+        [routerLink]="['/qe-reply/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeReply.home.createLabel"> Genera un nuovo Qe Reply </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="qeReplies?.length === 0">
+    <span jhiTranslate="vegaJhApp.qeReply.home.notFound">No Qe Replies found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="qeReplies && qeReplies.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nodeId">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.nodeId">Node Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="text">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.text">Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="title">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.title">Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="label">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.label">Label</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="replyType">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.replyType">Reply Type</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateMinValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.dateMinValue">Date Min Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="dateMaxValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.dateMaxValue">Date Max Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="integerMinValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.integerMinValue">Integer Min Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="integerMaxValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.integerMaxValue">Integer Max Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="doubleMinValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.doubleMinValue">Double Min Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="doubleMaxValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.doubleMaxValue">Double Max Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rangeMinValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.rangeMinValue">Range Min Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="rangeMaxValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.rangeMaxValue">Range Max Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="selectList">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.selectList">Select List</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="step">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.step">Step</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="replyPattern">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.replyPattern">Reply Pattern</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="multiple">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.multiple">Multiple</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="placeHolder">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.placeHolder">Place Holder</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="replyRequired">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.replyRequired">Reply Required</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="booleanValue">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.booleanValue">Boolean Value</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="withComment">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.withComment">With Comment</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="position">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.position">Position</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qeQuestion.id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeReply.qeQuestion">Qe Question</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qeReply of qeReplies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/qe-reply', qeReply.id, 'view']">{{ qeReply.id }}</a>
+          </td>
+          <td>{{ qeReply.nodeId }}</td>
+          <td>{{ qeReply.text }}</td>
+          <td>{{ qeReply.title }}</td>
+          <td>{{ qeReply.label }}</td>
+          <td jhiTranslate="{{ 'vegaJhApp.ReplyType.' + qeReply.replyType }}">{{ qeReply.replyType }}</td>
+          <td>{{ qeReply.dateMinValue | formatMediumDate }}</td>
+          <td>{{ qeReply.dateMaxValue | formatMediumDate }}</td>
+          <td>{{ qeReply.integerMinValue }}</td>
+          <td>{{ qeReply.integerMaxValue }}</td>
+          <td>{{ qeReply.doubleMinValue }}</td>
+          <td>{{ qeReply.doubleMaxValue }}</td>
+          <td>{{ qeReply.rangeMinValue }}</td>
+          <td>{{ qeReply.rangeMaxValue }}</td>
+          <td>{{ qeReply.selectList }}</td>
+          <td>{{ qeReply.step }}</td>
+          <td>{{ qeReply.replyPattern }}</td>
+          <td>{{ qeReply.multiple }}</td>
+          <td>{{ qeReply.placeHolder }}</td>
+          <td>{{ qeReply.replyRequired }}</td>
+          <td>{{ qeReply.booleanValue }}</td>
+          <td>{{ qeReply.withComment }}</td>
+          <td>{{ qeReply.position }}</td>
+          <td>
+            <div *ngIf="qeReply.qeQuestion">
+              <a [routerLink]="['/qe-question', qeReply.qeQuestion.id, 'view']">{{ qeReply.qeQuestion.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/qe-reply', qeReply.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/qe-reply', qeReply.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+              </button>
+
+              <button type="submit" (click)="delete(qeReply)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,278 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-qe-reply-heading" data-cy="QeReplyCreateUpdateHeading" jhiTranslate="vegaJhApp.qeReply.home.createOrEditLabel">
+        Genera o modifica un Qe Reply
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.nodeId" for="field_nodeId">Node Id</label>
+          <input type="text" class="form-control" name="nodeId" id="field_nodeId" data-cy="nodeId" formControlName="nodeId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.text" for="field_text">Text</label>
+          <input type="text" class="form-control" name="text" id="field_text" data-cy="text" formControlName="text" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.title" for="field_title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.label" for="field_label">Label</label>
+          <input type="text" class="form-control" name="label" id="field_label" data-cy="label" formControlName="label" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.replyType" for="field_replyType">Reply Type</label>
+          <select class="form-control" name="replyType" formControlName="replyType" id="field_replyType" data-cy="replyType">
+            <option [ngValue]="null">{{ 'vegaJhApp.ReplyType.null' | translate }}</option>
+            <option *ngFor="let replyType of replyTypeValues" [value]="replyType">
+              {{ 'vegaJhApp.ReplyType.' + replyType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.dateMinValue" for="field_dateMinValue">Date Min Value</label>
+          <div class="input-group">
+            <input
+              id="field_dateMinValue"
+              data-cy="dateMinValue"
+              type="text"
+              class="form-control"
+              name="dateMinValue"
+              ngbDatepicker
+              #dateMinValueDp="ngbDatepicker"
+              formControlName="dateMinValue"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateMinValueDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.dateMaxValue" for="field_dateMaxValue">Date Max Value</label>
+          <div class="input-group">
+            <input
+              id="field_dateMaxValue"
+              data-cy="dateMaxValue"
+              type="text"
+              class="form-control"
+              name="dateMaxValue"
+              ngbDatepicker
+              #dateMaxValueDp="ngbDatepicker"
+              formControlName="dateMaxValue"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateMaxValueDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.integerMinValue" for="field_integerMinValue">Integer Min Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="integerMinValue"
+            id="field_integerMinValue"
+            data-cy="integerMinValue"
+            formControlName="integerMinValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.integerMaxValue" for="field_integerMaxValue">Integer Max Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="integerMaxValue"
+            id="field_integerMaxValue"
+            data-cy="integerMaxValue"
+            formControlName="integerMaxValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.doubleMinValue" for="field_doubleMinValue">Double Min Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="doubleMinValue"
+            id="field_doubleMinValue"
+            data-cy="doubleMinValue"
+            formControlName="doubleMinValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.doubleMaxValue" for="field_doubleMaxValue">Double Max Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="doubleMaxValue"
+            id="field_doubleMaxValue"
+            data-cy="doubleMaxValue"
+            formControlName="doubleMaxValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.rangeMinValue" for="field_rangeMinValue">Range Min Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="rangeMinValue"
+            id="field_rangeMinValue"
+            data-cy="rangeMinValue"
+            formControlName="rangeMinValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.rangeMaxValue" for="field_rangeMaxValue">Range Max Value</label>
+          <input
+            type="number"
+            class="form-control"
+            name="rangeMaxValue"
+            id="field_rangeMaxValue"
+            data-cy="rangeMaxValue"
+            formControlName="rangeMaxValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.selectList" for="field_selectList">Select List</label>
+          <input
+            type="text"
+            class="form-control"
+            name="selectList"
+            id="field_selectList"
+            data-cy="selectList"
+            formControlName="selectList"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.step" for="field_step">Step</label>
+          <input type="number" class="form-control" name="step" id="field_step" data-cy="step" formControlName="step" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.replyPattern" for="field_replyPattern">Reply Pattern</label>
+          <input
+            type="text"
+            class="form-control"
+            name="replyPattern"
+            id="field_replyPattern"
+            data-cy="replyPattern"
+            formControlName="replyPattern"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.multiple" for="field_multiple">Multiple</label>
+          <input type="checkbox" class="form-check" name="multiple" id="field_multiple" data-cy="multiple" formControlName="multiple" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.placeHolder" for="field_placeHolder">Place Holder</label>
+          <input
+            type="text"
+            class="form-control"
+            name="placeHolder"
+            id="field_placeHolder"
+            data-cy="placeHolder"
+            formControlName="placeHolder"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.replyRequired" for="field_replyRequired">Reply Required</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="replyRequired"
+            id="field_replyRequired"
+            data-cy="replyRequired"
+            formControlName="replyRequired"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.booleanValue" for="field_booleanValue">Boolean Value</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="booleanValue"
+            id="field_booleanValue"
+            data-cy="booleanValue"
+            formControlName="booleanValue"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.withComment" for="field_withComment">With Comment</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="withComment"
+            id="field_withComment"
+            data-cy="withComment"
+            formControlName="withComment"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.position" for="field_position">Position</label>
+          <input type="number" class="form-control" name="position" id="field_position" data-cy="position" formControlName="position" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeReply.qeQuestion" for="field_qeQuestion">Qe Question</label>
+          <select
+            class="form-control"
+            id="field_qeQuestion"
+            data-cy="qeQuestion"
+            name="qeQuestion"
+            formControlName="qeQuestion"
+            [compareWith]="compareQeQuestion"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="qeQuestionOption" *ngFor="let qeQuestionOption of qeQuestionsSharedCollection">
+              {{ qeQuestionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annulla</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salva</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

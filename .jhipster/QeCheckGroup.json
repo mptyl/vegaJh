@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220857",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_check_group",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nodeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "radioboxGroupName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orientation",
+      "fieldType": "Orientation",
+      "fieldValues": "ORIZZONTALE,VERTICALE"
+    },
+    {
+      "fieldName": "positio",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeCheckGroup",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeCheckBox",
+      "otherEntityRelationshipName": "qeCheckGroup",
+      "relationshipName": "qeCheckBox",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "qeQuestion",
+      "otherEntityRelationshipName": "qeCheckGroup",
+      "relationshipName": "qeQuestion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

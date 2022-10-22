@@ -1,0 +1,127 @@
+<div>
+  <h2 id="page-heading" data-cy="QeRadioGroupHeading">
+    <span jhiTranslate="vegaJhApp.qeRadioGroup.home.title">QeRadioGroups</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeRadioGroup.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qe-radio-group"
+        [routerLink]="['/qe-radio-group/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeRadioGroup.home.createLabel"> Genera un nuovo Qe Radio Group </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="qeRadioGroups?.length === 0">
+    <span jhiTranslate="vegaJhApp.qeRadioGroup.home.notFound">No Qe Radio Groups found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="qeRadioGroups && qeRadioGroups.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioGroup.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nodeId">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioGroup.nodeId">Node Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="text">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioGroup.text">Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="radioboxGroupName">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioGroup.radioboxGroupName">Radiobox Group Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orientation">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioGroup.orientation">Orientation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="position">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioGroup.position">Position</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qeQuestion.id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeRadioGroup.qeQuestion">Qe Question</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qeRadioGroup of qeRadioGroups; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/qe-radio-group', qeRadioGroup.id, 'view']">{{ qeRadioGroup.id }}</a>
+          </td>
+          <td>{{ qeRadioGroup.nodeId }}</td>
+          <td>{{ qeRadioGroup.text }}</td>
+          <td>{{ qeRadioGroup.radioboxGroupName }}</td>
+          <td jhiTranslate="{{ 'vegaJhApp.Orientation.' + qeRadioGroup.orientation }}">{{ qeRadioGroup.orientation }}</td>
+          <td>{{ qeRadioGroup.position }}</td>
+          <td>
+            <div *ngIf="qeRadioGroup.qeQuestion">
+              <a [routerLink]="['/qe-question', qeRadioGroup.qeQuestion.id, 'view']">{{ qeRadioGroup.qeQuestion.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/qe-radio-group', qeRadioGroup.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/qe-radio-group', qeRadioGroup.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+              </button>
+
+              <button type="submit" (click)="delete(qeRadioGroup)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

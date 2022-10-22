@@ -1,0 +1,127 @@
+<div>
+  <h2 id="page-heading" data-cy="QeJumpExpressionHeading">
+    <span jhiTranslate="vegaJhApp.qeJumpExpression.home.title">QeJumpExpressions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeJumpExpression.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qe-jump-expression"
+        [routerLink]="['/qe-jump-expression/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeJumpExpression.home.createLabel"> Genera un nuovo Qe Jump Expression </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="qeJumpExpressions?.length === 0">
+    <span jhiTranslate="vegaJhApp.qeJumpExpression.home.notFound">No Qe Jump Expressions found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="qeJumpExpressions && qeJumpExpressions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeJumpExpression.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nodeId">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeJumpExpression.nodeId">Node Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="text">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeJumpExpression.text">Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="expression">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeJumpExpression.expression">Expression</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="jumpTo">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeJumpExpression.jumpTo">Jump To</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="position">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeJumpExpression.position">Position</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qeQuestion.id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeJumpExpression.qeQuestion">Qe Question</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qeJumpExpression of qeJumpExpressions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/qe-jump-expression', qeJumpExpression.id, 'view']">{{ qeJumpExpression.id }}</a>
+          </td>
+          <td>{{ qeJumpExpression.nodeId }}</td>
+          <td>{{ qeJumpExpression.text }}</td>
+          <td>{{ qeJumpExpression.expression }}</td>
+          <td>{{ qeJumpExpression.jumpTo }}</td>
+          <td>{{ qeJumpExpression.position }}</td>
+          <td>
+            <div *ngIf="qeJumpExpression.qeQuestion">
+              <a [routerLink]="['/qe-question', qeJumpExpression.qeQuestion.id, 'view']">{{ qeJumpExpression.qeQuestion.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/qe-jump-expression', qeJumpExpression.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/qe-jump-expression', qeJumpExpression.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+              </button>
+
+              <button type="submit" (click)="delete(qeJumpExpression)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

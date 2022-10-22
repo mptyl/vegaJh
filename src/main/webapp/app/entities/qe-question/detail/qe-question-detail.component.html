@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="qeQuestion">
+      <h2 data-cy="qeQuestionDetailsHeading"><span jhiTranslate="vegaJhApp.qeQuestion.detail.title">Qe Question</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.id">Id</span></dt>
+        <dd>
+          <span>{{ qeQuestion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.nodeId">Node Id</span></dt>
+        <dd>
+          <span>{{ qeQuestion.nodeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.text">Text</span></dt>
+        <dd>
+          <span>{{ qeQuestion.text }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.title">Title</span></dt>
+        <dd>
+          <span>{{ qeQuestion.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.questionText">Question Text</span></dt>
+        <dd>
+          <span>{{ qeQuestion.questionText }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.note">Note</span></dt>
+        <dd>
+          <span>{{ qeQuestion.note }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.minReplyNumber">Min Reply Number</span></dt>
+        <dd>
+          <span>{{ qeQuestion.minReplyNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.maxReplyNumber">Max Reply Number</span></dt>
+        <dd>
+          <span>{{ qeQuestion.maxReplyNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.randomRepliesOrder">Random Replies Order</span></dt>
+        <dd>
+          <span>{{ qeQuestion.randomRepliesOrder }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.valueOfAnswerSum">Value Of Answer Sum</span></dt>
+        <dd>
+          <span>{{ qeQuestion.valueOfAnswerSum }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.attachmentsRequired">Attachments Required</span></dt>
+        <dd>
+          <span>{{ qeQuestion.attachmentsRequired }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.image64">Image 64</span></dt>
+        <dd>
+          <span>{{ qeQuestion.image64 }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.imageAlt">Image Alt</span></dt>
+        <dd>
+          <span>{{ qeQuestion.imageAlt }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.nodeToExpand">Node To Expand</span></dt>
+        <dd>
+          <span>{{ qeQuestion.nodeToExpand }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.position">Position</span></dt>
+        <dd>
+          <span>{{ qeQuestion.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeQuestion.qeGroup">Qe Group</span></dt>
+        <dd>
+          <div *ngIf="qeQuestion.qeGroup">
+            <a [routerLink]="['/qe-group', qeQuestion.qeGroup.id, 'view']">{{ qeQuestion.qeGroup.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+      </button>
+
+      <button type="button" [routerLink]="['/qe-question', qeQuestion.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+      </button>
+    </div>
+  </div>
+</div>

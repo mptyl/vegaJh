@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-qe-check-group-heading"
+        data-cy="QeCheckGroupCreateUpdateHeading"
+        jhiTranslate="vegaJhApp.qeCheckGroup.home.createOrEditLabel"
+      >
+        Genera o modifica un Qe Check Group
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeCheckGroup.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeCheckGroup.nodeId" for="field_nodeId">Node Id</label>
+          <input type="text" class="form-control" name="nodeId" id="field_nodeId" data-cy="nodeId" formControlName="nodeId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeCheckGroup.text" for="field_text">Text</label>
+          <input type="text" class="form-control" name="text" id="field_text" data-cy="text" formControlName="text" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeCheckGroup.radioboxGroupName" for="field_radioboxGroupName"
+            >Radiobox Group Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="radioboxGroupName"
+            id="field_radioboxGroupName"
+            data-cy="radioboxGroupName"
+            formControlName="radioboxGroupName"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeCheckGroup.orientation" for="field_orientation">Orientation</label>
+          <select class="form-control" name="orientation" formControlName="orientation" id="field_orientation" data-cy="orientation">
+            <option [ngValue]="null">{{ 'vegaJhApp.Orientation.null' | translate }}</option>
+            <option *ngFor="let orientation of orientationValues" [value]="orientation">
+              {{ 'vegaJhApp.Orientation.' + orientation | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeCheckGroup.positio" for="field_positio">Positio</label>
+          <input type="number" class="form-control" name="positio" id="field_positio" data-cy="positio" formControlName="positio" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeCheckGroup.qeQuestion" for="field_qeQuestion">Qe Question</label>
+          <select
+            class="form-control"
+            id="field_qeQuestion"
+            data-cy="qeQuestion"
+            name="qeQuestion"
+            formControlName="qeQuestion"
+            [compareWith]="compareQeQuestion"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="qeQuestionOption" *ngFor="let qeQuestionOption of qeQuestionsSharedCollection">
+              {{ qeQuestionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annulla</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salva</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+{
+  "vegaJhApp": {
+    "qeReply": {
+      "home": {
+        "title": "Qe Replies",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Qe Reply",
+        "createOrEditLabel": "Create or edit a Qe Reply",
+        "notFound": "No Qe Replies found"
+      },
+      "created": "A new Qe Reply is created with identifier {{ param }}",
+      "updated": "A Qe Reply is updated with identifier {{ param }}",
+      "deleted": "A Qe Reply is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Qe Reply {{ id }}?"
+      },
+      "detail": {
+        "title": "Qe Reply"
+      },
+      "id": "Id",
+      "nodeId": "Node Id",
+      "text": "Text",
+      "title": "Title",
+      "label": "Label",
+      "replyType": "Reply Type",
+      "dateMinValue": "Date Min Value",
+      "dateMaxValue": "Date Max Value",
+      "integerMinValue": "Integer Min Value",
+      "integerMaxValue": "Integer Max Value",
+      "doubleMinValue": "Double Min Value",
+      "doubleMaxValue": "Double Max Value",
+      "rangeMinValue": "Range Min Value",
+      "rangeMaxValue": "Range Max Value",
+      "selectList": "Select List",
+      "step": "Step",
+      "replyPattern": "Reply Pattern",
+      "multiple": "Multiple",
+      "placeHolder": "Place Holder",
+      "replyRequired": "Reply Required",
+      "booleanValue": "Boolean Value",
+      "withComment": "With Comment",
+      "position": "Position",
+      "qeQuestion": "Qe Question"
+    }
+  }
+}

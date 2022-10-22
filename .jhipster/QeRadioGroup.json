@@ -1,0 +1,54 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220856",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_radio_group",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nodeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "radioboxGroupName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orientation",
+      "fieldType": "Orientation",
+      "fieldValues": "ORIZZONTALE,VERTICALE"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeRadioGroup",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeRadioBox",
+      "otherEntityRelationshipName": "qeRadioGroup",
+      "relationshipName": "qeRadioBox",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "qeQuestion",
+      "otherEntityRelationshipName": "qeRadioGroup",
+      "relationshipName": "qeQuestion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

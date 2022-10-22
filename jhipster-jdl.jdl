@@ -1,0 +1,209 @@
+
+
+entity Questionnaire {
+	id Long
+    name String
+    version String
+    title String
+    subTitle String
+    notes String
+    image	String
+    imageAlt String
+    instructions String
+    compilationTime Integer
+    forcedTerminationTime Integer
+    usedSeconds Integer
+    status Integer
+    xml String
+    json String
+    saveText String
+    /** Campo utilizzato nella ricerca */
+	searchText String
+    subjectToEvaluation String
+    questionnaireType QuestionnaireType
+    attachments Integer
+}
+
+entity QuestionnaireProfile {
+	id Long
+    description String
+}
+
+entity QuestionnaireGroup{
+	id Long
+    name String
+    description String
+}
+
+entity QeGroup {
+	id Long
+    nodeId String
+    text String
+    random Boolean
+    position Integer
+}
+
+entity QeQuestion{
+	id Long
+    nodeId	String
+    text String
+    title String
+    questionText String
+    note String
+    minReplyNumber Integer
+    maxReplyNumber Integer
+    randomRepliesOrder Boolean
+    valueOfAnswerSum Integer
+    attachmentsRequired Integer
+    image64 String
+    imageAlt String
+    nodeToExpand Long
+    position Integer
+}
+
+entity QeReply{
+	id Long
+	nodeId String
+    text String
+    title String
+    label String
+    replyType ReplyType
+    dateMinValue LocalDate
+    dateMaxValue LocalDate
+    integerMinValue Integer
+    integerMaxValue Integer
+    doubleMinValue Double
+    doubleMaxValue Double
+    rangeMinValue Integer
+    rangeMaxValue Integer
+    selectList String
+    step Integer
+    replyPattern String
+    multiple Boolean
+    placeHolder String
+    replyRequired Boolean
+    booleanValue Boolean
+    withComment Boolean
+	position Integer
+}
+
+entity QeRadioBox{
+	id Long
+    label String
+    boxvalue String
+    checked Boolean
+    position Integer
+}
+
+entity QeCheckBox{
+	id Long
+    label String
+    boxvalue String
+    checked Boolean
+    position Integer
+}
+
+entity QeRadioGroup{
+	id Long
+    nodeId String
+    text String
+    radioboxGroupName String
+    orientation Orientation
+    position Integer
+}
+
+entity QeCheckGroup{
+	id Long
+    nodeId String
+    text String
+    radioboxGroupName String
+    orientation Orientation
+    positio Integer
+}
+
+entity QeJumpExpression{
+	id Long
+    nodeId String
+    text String
+    expression String
+    jumpTo String
+    position Integer
+}
+
+/** se Range integerMinValue e integerMaxValue fanno da range e step fa da step */
+enum ReplyType{
+	TEXT
+    CHECKBOX
+    SELECT
+    DATE
+    INTEGER
+    NUMBER
+    RANGE
+    FILE
+    EMAIL
+    PHONE
+    TIME
+    URL
+}
+
+enum Orientation{
+	ORIZZONTALE
+    VERTICALE
+}
+
+enum QuestionnaireType{
+    ANCORE
+    AUTOVALUTAZIONI
+    PERCORSOSTUDIO
+}
+
+relationship OneToMany {
+  Questionnaire to QeGroup
+}
+
+relationship OneToMany {
+  QeGroup to QeQuestion
+}
+
+relationship OneToMany {
+  QeQuestion to QeReply
+}
+
+relationship OneToMany {
+  QeQuestion to QeJumpExpression
+}
+
+relationship OneToMany {
+  QeQuestion to QeRadioGroup
+}
+
+relationship OneToMany {
+  QeQuestion to QeCheckGroup
+}
+
+relationship OneToMany {
+  QeRadioGroup to QeRadioBox
+}
+
+relationship OneToMany {
+  QeCheckGroup to QeCheckBox
+}
+
+relationship OneToMany {
+  QuestionnaireGroup to Questionnaire
+}
+
+relationship OneToMany {
+	QuestionnaireProfile to Questionnaire
+}
+
+dto all with mapstruct
+
+filter Questionnaire
+
+paginate Questionnaire with infinite-scroll 
+paginate QeQuestion with pagination
+
+
+
+    

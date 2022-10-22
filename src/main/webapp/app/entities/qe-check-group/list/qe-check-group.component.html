@@ -1,0 +1,127 @@
+<div>
+  <h2 id="page-heading" data-cy="QeCheckGroupHeading">
+    <span jhiTranslate="vegaJhApp.qeCheckGroup.home.title">QeCheckGroups</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeCheckGroup.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qe-check-group"
+        [routerLink]="['/qe-check-group/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeCheckGroup.home.createLabel"> Genera un nuovo Qe Check Group </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="qeCheckGroups?.length === 0">
+    <span jhiTranslate="vegaJhApp.qeCheckGroup.home.notFound">No Qe Check Groups found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="qeCheckGroups && qeCheckGroups.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeCheckGroup.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nodeId">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeCheckGroup.nodeId">Node Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="text">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeCheckGroup.text">Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="radioboxGroupName">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeCheckGroup.radioboxGroupName">Radiobox Group Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="orientation">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeCheckGroup.orientation">Orientation</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="positio">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeCheckGroup.positio">Positio</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qeQuestion.id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeCheckGroup.qeQuestion">Qe Question</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qeCheckGroup of qeCheckGroups; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/qe-check-group', qeCheckGroup.id, 'view']">{{ qeCheckGroup.id }}</a>
+          </td>
+          <td>{{ qeCheckGroup.nodeId }}</td>
+          <td>{{ qeCheckGroup.text }}</td>
+          <td>{{ qeCheckGroup.radioboxGroupName }}</td>
+          <td jhiTranslate="{{ 'vegaJhApp.Orientation.' + qeCheckGroup.orientation }}">{{ qeCheckGroup.orientation }}</td>
+          <td>{{ qeCheckGroup.positio }}</td>
+          <td>
+            <div *ngIf="qeCheckGroup.qeQuestion">
+              <a [routerLink]="['/qe-question', qeCheckGroup.qeQuestion.id, 'view']">{{ qeCheckGroup.qeQuestion.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/qe-check-group', qeCheckGroup.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/qe-check-group', qeCheckGroup.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+              </button>
+
+              <button type="submit" (click)="delete(qeCheckGroup)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

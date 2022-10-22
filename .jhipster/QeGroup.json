@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220851",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_group",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nodeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "random",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeGroup",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeQuestion",
+      "otherEntityRelationshipName": "qeGroup",
+      "relationshipName": "qeQuestion",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "questionnaire",
+      "otherEntityRelationshipName": "qeGroup",
+      "relationshipName": "questionnaire",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

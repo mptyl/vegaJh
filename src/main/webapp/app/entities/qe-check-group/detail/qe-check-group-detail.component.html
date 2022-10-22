@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="qeCheckGroup">
+      <h2 data-cy="qeCheckGroupDetailsHeading"><span jhiTranslate="vegaJhApp.qeCheckGroup.detail.title">Qe Check Group</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vegaJhApp.qeCheckGroup.id">Id</span></dt>
+        <dd>
+          <span>{{ qeCheckGroup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckGroup.nodeId">Node Id</span></dt>
+        <dd>
+          <span>{{ qeCheckGroup.nodeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckGroup.text">Text</span></dt>
+        <dd>
+          <span>{{ qeCheckGroup.text }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckGroup.radioboxGroupName">Radiobox Group Name</span></dt>
+        <dd>
+          <span>{{ qeCheckGroup.radioboxGroupName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckGroup.orientation">Orientation</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vegaJhApp.Orientation.' + qeCheckGroup.orientation }}">{{ qeCheckGroup.orientation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckGroup.positio">Positio</span></dt>
+        <dd>
+          <span>{{ qeCheckGroup.positio }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckGroup.qeQuestion">Qe Question</span></dt>
+        <dd>
+          <div *ngIf="qeCheckGroup.qeQuestion">
+            <a [routerLink]="['/qe-question', qeCheckGroup.qeQuestion.id, 'view']">{{ qeCheckGroup.qeQuestion.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+      </button>
+
+      <button type="button" [routerLink]="['/qe-check-group', qeCheckGroup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+      </button>
+    </div>
+  </div>
+</div>

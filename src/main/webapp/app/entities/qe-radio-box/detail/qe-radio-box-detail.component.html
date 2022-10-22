@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="qeRadioBox">
+      <h2 data-cy="qeRadioBoxDetailsHeading"><span jhiTranslate="vegaJhApp.qeRadioBox.detail.title">Qe Radio Box</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vegaJhApp.qeRadioBox.id">Id</span></dt>
+        <dd>
+          <span>{{ qeRadioBox.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioBox.label">Label</span></dt>
+        <dd>
+          <span>{{ qeRadioBox.label }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioBox.boxvalue">Boxvalue</span></dt>
+        <dd>
+          <span>{{ qeRadioBox.boxvalue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioBox.checked">Checked</span></dt>
+        <dd>
+          <span>{{ qeRadioBox.checked }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioBox.position">Position</span></dt>
+        <dd>
+          <span>{{ qeRadioBox.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioBox.qeRadioGroup">Qe Radio Group</span></dt>
+        <dd>
+          <div *ngIf="qeRadioBox.qeRadioGroup">
+            <a [routerLink]="['/qe-radio-group', qeRadioBox.qeRadioGroup.id, 'view']">{{ qeRadioBox.qeRadioGroup.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+      </button>
+
+      <button type="button" [routerLink]="['/qe-radio-box', qeRadioBox.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+      </button>
+    </div>
+  </div>
+</div>

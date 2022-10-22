@@ -1,0 +1,29 @@
+{
+  "vegaJhApp": {
+    "qeGroup": {
+      "home": {
+        "title": "QeGroups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Qe Group",
+        "createOrEditLabel": "Genera o modifica un Qe Group",
+        "notFound": "No Qe Groups found"
+      },
+      "created": "&Egrave; stato generato un nuovo Qe Group con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Qe Group identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Qe Group con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Qe Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Qe Group"
+      },
+      "id": "Id",
+      "nodeId": "Node Id",
+      "text": "Text",
+      "random": "Random",
+      "position": "Position",
+      "qeQuestion": "Qe Question",
+      "questionnaire": "Questionnaire"
+    }
+  }
+}

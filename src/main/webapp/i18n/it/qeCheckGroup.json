@@ -1,0 +1,30 @@
+{
+  "vegaJhApp": {
+    "qeCheckGroup": {
+      "home": {
+        "title": "QeCheckGroups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Qe Check Group",
+        "createOrEditLabel": "Genera o modifica un Qe Check Group",
+        "notFound": "No Qe Check Groups found"
+      },
+      "created": "&Egrave; stato generato un nuovo Qe Check Group con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Qe Check Group identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Qe Check Group con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Qe Check Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Qe Check Group"
+      },
+      "id": "Id",
+      "nodeId": "Node Id",
+      "text": "Text",
+      "radioboxGroupName": "Radiobox Group Name",
+      "orientation": "Orientation",
+      "positio": "Positio",
+      "qeCheckBox": "Qe Check Box",
+      "qeQuestion": "Qe Question"
+    }
+  }
+}

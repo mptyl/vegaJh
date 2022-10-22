@@ -1,0 +1,117 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220853",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_reply",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nodeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "replyType",
+      "fieldType": "ReplyType",
+      "fieldTypeJavadoc": "se Range integerMinValue e integerMaxValue fanno da range e step fa da step",
+      "fieldValues": "TEXT,CHECKBOX,SELECT,DATE,INTEGER,NUMBER,RANGE,FILE,EMAIL,PHONE,TIME,URL"
+    },
+    {
+      "fieldName": "dateMinValue",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateMaxValue",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "integerMinValue",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "integerMaxValue",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "doubleMinValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "doubleMaxValue",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "rangeMinValue",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "rangeMaxValue",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "selectList",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "step",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "replyPattern",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "multiple",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "placeHolder",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "replyRequired",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "booleanValue",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "withComment",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeReply",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeQuestion",
+      "otherEntityRelationshipName": "qeReply",
+      "relationshipName": "qeQuestion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

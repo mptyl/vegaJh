@@ -1,0 +1,65 @@
+{
+    "name": "vegaui",
+    "settings": {
+        "cmd": {
+            "license": "commercial",
+            "cmdVersion": "7.6.0.87",
+            "frameworkVersion": "7.6.0.41"
+        },
+        "canvasControls": {
+            "viewportSize": {
+                "name": "Auto Expand",
+                "builtIn": true,
+                "height": null,
+                "width": null
+            }
+        },
+        "urlPrefix": "http://localhost:2129/",
+        "exportPath": "",
+        "lockUrlPrefix": true,
+        "buildShouldOverwriteIndex": true,
+        "generateArchitectVersion": true,
+        "spacesToIndent": 4,
+        "lineEnding": "LF",
+        "genTimestamps": false,
+        "cacheBust": false,
+        "installStatus": "Not Installed",
+        "urlPrefixTemplate": "http://localhost:2129/{path}",
+        "sdkPath": "",
+        "lastBuildSelection": {
+            "value": "webBuild",
+            "display": "Build web app",
+            "buildPlatform": false
+        }
+    },
+    "xdsVersion": "4.3.2",
+    "xdsBuild": 19,
+    "schemaVersion": 1,
+    "upgradeVersion": 310000000001,
+    "framework": "ext76",
+    "viewOrderMap": {
+        "view": [
+            "353f0c49-9162-4dc5-8e2d-ffb09f0d3a62",
+            "e06398df-21db-494a-8ccf-784239a17dcd",
+            "e0b7feb2-75c1-4538-ad8b-f4ba408c7b59"
+        ],
+        "store": [
+            "e14b8db3-efec-4c24-894c-74d24bfbf941"
+        ],
+        "controller": [
+            "02e19093-9c6b-4222-8b96-2632f82d7303"
+        ],
+        "model": [
+            "e73f8c0e-ccbf-45a0-aacb-ed760c134700"
+        ],
+        "resource": [
+            "e11ec7d3-62f8-49f8-8c06-c0dc4baa1627",
+            "efa3151d-f411-416b-a78d-276e3b22783a",
+            "c64cbeaa-8a4b-4074-bd25-364524941d6f",
+            "b79dd43a-abb7-4194-b756-caafa04324b8"
+        ],
+        "app": [
+            "application"
+        ]
+    }
+}

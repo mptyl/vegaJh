@@ -1,0 +1,32 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "Navigation"
+        ],
+        "models": [
+            "QuestionnaireDTO"
+        ],
+        "name": "VegaJhUI",
+        "stores": [
+            "QuestionnaireDirectStore"
+        ],
+        "views": [
+            "MainView"
+        ]
+    },
+    "configAlternates": {
+        "controllers": "typedarray",
+        "name": "string",
+        "views": "typedarray",
+        "models": "typedarray",
+        "stores": "typedarray"
+    },
+    "name": "Application",
+    "designerId": "application"
+}

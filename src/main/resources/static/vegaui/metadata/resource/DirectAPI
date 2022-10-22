@@ -1,0 +1,18 @@
+{
+    "type": "directresource",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "DirectAPI",
+        "url": "http://localhost:8080/api.js?baseRouterUrl=http://localhost:8080&fullRouterUrl=true"
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "url": "uri"
+    },
+    "name": "DirectAPI",
+    "designerId": "b79dd43a-abb7-4194-b756-caafa04324b8"
+}

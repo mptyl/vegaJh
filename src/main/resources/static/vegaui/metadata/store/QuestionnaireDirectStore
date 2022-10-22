@@ -1,0 +1,120 @@
+{
+    "type": "directstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "designer|userClassName": "QuestionnaireDirectStore",
+        "model": "QuestionnaireDTO",
+        "storeId": "QuestionnaireDirectStore"
+    },
+    "configAlternates": {
+        "autoLoad": "boolean",
+        "designer|userClassName": "string",
+        "model": "model",
+        "storeId": "string"
+    },
+    "name": "MyDirectStore",
+    "designerId": "e14b8db3-efec-4c24-894c-74d24bfbf941",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Direct",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "api": [
+                    "{read:'questionnaireDirect.loadAllQuestionnaires'}"
+                ]
+            },
+            "configAlternates": {
+                "api": "object"
+            },
+            "name": "MyDirectProxy",
+            "designerId": "8e8fba80-fef3-43d3-a681-fd235af5a565",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "messageProperty": "Errore nella lettura dei Questionari",
+                        "rootProperty": "records"
+                    },
+                    "configAlternates": {
+                        "messageProperty": "string",
+                        "rootProperty": "string"
+                    },
+                    "name": "MyJsonReader1",
+                    "designerId": "b0ac18fe-36d1-40b7-a73f-cf236278b99f",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onJsonException",
+                                "implHandler": [
+                                    "var me = this;",
+                                    "Ext.MessageBox.alert('Errore nell\\'accesso alla tabella Questionnaire', JSON.parse(response.responseText).message,",
+                                    "    function () {",
+                                    "        me.rejectChanges();",
+                                    "    }, me);"
+                                ],
+                                "name": "exception",
+                                "scope": "me"
+                            },
+                            "configAlternates": {
+                                "fn": "string",
+                                "implHandler": "code",
+                                "name": "string",
+                                "scope": "string"
+                            },
+                            "name": "onJsonException",
+                            "designerId": "ee0d674f-52cc-4e67-b89d-9b3db013e323"
+                        }
+                    ]
+                },
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fn": "onDirectException",
+                        "implHandler": [
+                            "var me = this;",
+                            "Ext.MessageBox.alert('Errore nell\\'accesso alla tabella Questionnaire', operation.getError(),",
+                            "    function () {",
+                            "        me.rejectChanges();",
+                            "}, me);"
+                        ],
+                        "name": "exception",
+                        "scope": "me"
+                    },
+                    "configAlternates": {
+                        "fn": "string",
+                        "implHandler": "code",
+                        "name": "string",
+                        "scope": "string"
+                    },
+                    "name": "onDirectException",
+                    "designerId": "4996e2d4-24da-4aac-9012-ab2c9edf88f5"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="QeGroupHeading">
+    <span jhiTranslate="vegaJhApp.qeGroup.home.title">QeGroups</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeGroup.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qe-group"
+        [routerLink]="['/qe-group/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeGroup.home.createLabel"> Genera un nuovo Qe Group </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="qeGroups?.length === 0">
+    <span jhiTranslate="vegaJhApp.qeGroup.home.notFound">No Qe Groups found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="qeGroups && qeGroups.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeGroup.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nodeId">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeGroup.nodeId">Node Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="text">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeGroup.text">Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="random">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeGroup.random">Random</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="position">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeGroup.position">Position</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="questionnaire.id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeGroup.questionnaire">Questionnaire</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qeGroup of qeGroups; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/qe-group', qeGroup.id, 'view']">{{ qeGroup.id }}</a>
+          </td>
+          <td>{{ qeGroup.nodeId }}</td>
+          <td>{{ qeGroup.text }}</td>
+          <td>{{ qeGroup.random }}</td>
+          <td>{{ qeGroup.position }}</td>
+          <td>
+            <div *ngIf="qeGroup.questionnaire">
+              <a [routerLink]="['/questionnaire', qeGroup.questionnaire.id, 'view']">{{ qeGroup.questionnaire.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/qe-group', qeGroup.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/qe-group', qeGroup.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+              </button>
+
+              <button type="submit" (click)="delete(qeGroup)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

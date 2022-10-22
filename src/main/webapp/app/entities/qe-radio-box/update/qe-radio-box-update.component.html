@@ -1,0 +1,71 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-qe-radio-box-heading" data-cy="QeRadioBoxCreateUpdateHeading" jhiTranslate="vegaJhApp.qeRadioBox.home.createOrEditLabel">
+        Genera o modifica un Qe Radio Box
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeRadioBox.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeRadioBox.label" for="field_label">Label</label>
+          <input type="text" class="form-control" name="label" id="field_label" data-cy="label" formControlName="label" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeRadioBox.boxvalue" for="field_boxvalue">Boxvalue</label>
+          <input type="text" class="form-control" name="boxvalue" id="field_boxvalue" data-cy="boxvalue" formControlName="boxvalue" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeRadioBox.checked" for="field_checked">Checked</label>
+          <input type="checkbox" class="form-check" name="checked" id="field_checked" data-cy="checked" formControlName="checked" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeRadioBox.position" for="field_position">Position</label>
+          <input type="number" class="form-control" name="position" id="field_position" data-cy="position" formControlName="position" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeRadioBox.qeRadioGroup" for="field_qeRadioGroup">Qe Radio Group</label>
+          <select
+            class="form-control"
+            id="field_qeRadioGroup"
+            data-cy="qeRadioGroup"
+            name="qeRadioGroup"
+            formControlName="qeRadioGroup"
+            [compareWith]="compareQeRadioGroup"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="qeRadioGroupOption" *ngFor="let qeRadioGroupOption of qeRadioGroupsSharedCollection">
+              {{ qeRadioGroupOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annulla</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salva</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

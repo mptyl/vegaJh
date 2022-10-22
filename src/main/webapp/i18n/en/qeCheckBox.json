@@ -1,0 +1,28 @@
+{
+  "vegaJhApp": {
+    "qeCheckBox": {
+      "home": {
+        "title": "Qe Check Boxes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Qe Check Box",
+        "createOrEditLabel": "Create or edit a Qe Check Box",
+        "notFound": "No Qe Check Boxes found"
+      },
+      "created": "A new Qe Check Box is created with identifier {{ param }}",
+      "updated": "A Qe Check Box is updated with identifier {{ param }}",
+      "deleted": "A Qe Check Box is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Qe Check Box {{ id }}?"
+      },
+      "detail": {
+        "title": "Qe Check Box"
+      },
+      "id": "Id",
+      "label": "Label",
+      "boxvalue": "Boxvalue",
+      "checked": "Checked",
+      "position": "Position",
+      "qeCheckGroup": "Qe Check Group"
+    }
+  }
+}

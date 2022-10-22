@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="qeGroup">
+      <h2 data-cy="qeGroupDetailsHeading"><span jhiTranslate="vegaJhApp.qeGroup.detail.title">Qe Group</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vegaJhApp.qeGroup.id">Id</span></dt>
+        <dd>
+          <span>{{ qeGroup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeGroup.nodeId">Node Id</span></dt>
+        <dd>
+          <span>{{ qeGroup.nodeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeGroup.text">Text</span></dt>
+        <dd>
+          <span>{{ qeGroup.text }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeGroup.random">Random</span></dt>
+        <dd>
+          <span>{{ qeGroup.random }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeGroup.position">Position</span></dt>
+        <dd>
+          <span>{{ qeGroup.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeGroup.questionnaire">Questionnaire</span></dt>
+        <dd>
+          <div *ngIf="qeGroup.questionnaire">
+            <a [routerLink]="['/questionnaire', qeGroup.questionnaire.id, 'view']">{{ qeGroup.questionnaire.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+      </button>
+
+      <button type="button" [routerLink]="['/qe-group', qeGroup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="floatType" value="float4" dbms="h2"/>
+    <property name="uuidType" value="uuid" dbms="h2"/>
+    <property name="datetimeType" value="datetime" dbms="h2"/>
+    <property name="clobType" value="longvarchar" dbms="h2"/>
+    <property name="blobType" value="blob" dbms="h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="floatType" value="float4" dbms="postgresql"/>
+    <property name="clobType" value="longvarchar" dbms="postgresql"/>
+    <property name="blobType" value="bytea" dbms="postgresql"/>
+    <property name="uuidType" value="uuid" dbms="postgresql"/>
+    <property name="datetimeType" value="datetime" dbms="postgresql"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220848_added_entity_Questionnaire.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220849_added_entity_QuestionnaireProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220850_added_entity_QuestionnaireGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220851_added_entity_QeGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220852_added_entity_QeQuestion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220853_added_entity_QeReply.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220854_added_entity_QeRadioBox.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220855_added_entity_QeCheckBox.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220856_added_entity_QeRadioGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220857_added_entity_QeCheckGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220858_added_entity_QeJumpExpression.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20221018220848_added_entity_constraints_Questionnaire.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220851_added_entity_constraints_QeGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220852_added_entity_constraints_QeQuestion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220853_added_entity_constraints_QeReply.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220854_added_entity_constraints_QeRadioBox.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220855_added_entity_constraints_QeCheckBox.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220856_added_entity_constraints_QeRadioGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220857_added_entity_constraints_QeCheckGroup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221018220858_added_entity_constraints_QeJumpExpression.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
+</databaseChangeLog>

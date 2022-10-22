@@ -1,0 +1,174 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-qe-question-heading" data-cy="QeQuestionCreateUpdateHeading" jhiTranslate="vegaJhApp.qeQuestion.home.createOrEditLabel">
+        Genera o modifica un Qe Question
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.id" for="field_id">Id</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.nodeId" for="field_nodeId">Node Id</label>
+          <input type="text" class="form-control" name="nodeId" id="field_nodeId" data-cy="nodeId" formControlName="nodeId" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.text" for="field_text">Text</label>
+          <input type="text" class="form-control" name="text" id="field_text" data-cy="text" formControlName="text" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.title" for="field_title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.questionText" for="field_questionText">Question Text</label>
+          <input
+            type="text"
+            class="form-control"
+            name="questionText"
+            id="field_questionText"
+            data-cy="questionText"
+            formControlName="questionText"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.note" for="field_note">Note</label>
+          <input type="text" class="form-control" name="note" id="field_note" data-cy="note" formControlName="note" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.minReplyNumber" for="field_minReplyNumber">Min Reply Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="minReplyNumber"
+            id="field_minReplyNumber"
+            data-cy="minReplyNumber"
+            formControlName="minReplyNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.maxReplyNumber" for="field_maxReplyNumber">Max Reply Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="maxReplyNumber"
+            id="field_maxReplyNumber"
+            data-cy="maxReplyNumber"
+            formControlName="maxReplyNumber"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.randomRepliesOrder" for="field_randomRepliesOrder"
+            >Random Replies Order</label
+          >
+          <input
+            type="checkbox"
+            class="form-check"
+            name="randomRepliesOrder"
+            id="field_randomRepliesOrder"
+            data-cy="randomRepliesOrder"
+            formControlName="randomRepliesOrder"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.valueOfAnswerSum" for="field_valueOfAnswerSum"
+            >Value Of Answer Sum</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valueOfAnswerSum"
+            id="field_valueOfAnswerSum"
+            data-cy="valueOfAnswerSum"
+            formControlName="valueOfAnswerSum"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.attachmentsRequired" for="field_attachmentsRequired"
+            >Attachments Required</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="attachmentsRequired"
+            id="field_attachmentsRequired"
+            data-cy="attachmentsRequired"
+            formControlName="attachmentsRequired"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.image64" for="field_image64">Image 64</label>
+          <input type="text" class="form-control" name="image64" id="field_image64" data-cy="image64" formControlName="image64" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.imageAlt" for="field_imageAlt">Image Alt</label>
+          <input type="text" class="form-control" name="imageAlt" id="field_imageAlt" data-cy="imageAlt" formControlName="imageAlt" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.nodeToExpand" for="field_nodeToExpand">Node To Expand</label>
+          <input
+            type="number"
+            class="form-control"
+            name="nodeToExpand"
+            id="field_nodeToExpand"
+            data-cy="nodeToExpand"
+            formControlName="nodeToExpand"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.position" for="field_position">Position</label>
+          <input type="number" class="form-control" name="position" id="field_position" data-cy="position" formControlName="position" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="vegaJhApp.qeQuestion.qeGroup" for="field_qeGroup">Qe Group</label>
+          <select
+            class="form-control"
+            id="field_qeGroup"
+            data-cy="qeGroup"
+            name="qeGroup"
+            formControlName="qeGroup"
+            [compareWith]="compareQeGroup"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="qeGroupOption" *ngFor="let qeGroupOption of qeGroupsSharedCollection">{{ qeGroupOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annulla</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Salva</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

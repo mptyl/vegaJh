@@ -1,0 +1,208 @@
+<div>
+  <h2 id="page-heading" data-cy="QeQuestionHeading">
+    <span jhiTranslate="vegaJhApp.qeQuestion.home.title">QeQuestions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeQuestion.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-qe-question"
+        [routerLink]="['/qe-question/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="vegaJhApp.qeQuestion.home.createLabel"> Genera un nuovo Qe Question </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="qeQuestions?.length === 0">
+    <span jhiTranslate="vegaJhApp.qeQuestion.home.notFound">No Qe Questions found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="qeQuestions && qeQuestions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.id">Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nodeId">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.nodeId">Node Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="text">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.text">Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="title">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.title">Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="questionText">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.questionText">Question Text</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="note">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.note">Note</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="minReplyNumber">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.minReplyNumber">Min Reply Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="maxReplyNumber">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.maxReplyNumber">Max Reply Number</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="randomRepliesOrder">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.randomRepliesOrder">Random Replies Order</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="valueOfAnswerSum">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.valueOfAnswerSum">Value Of Answer Sum</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="attachmentsRequired">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.attachmentsRequired">Attachments Required</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="image64">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.image64">Image 64</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="imageAlt">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.imageAlt">Image Alt</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="nodeToExpand">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.nodeToExpand">Node To Expand</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="position">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.position">Position</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="qeGroup.id">
+            <div class="d-flex">
+              <span jhiTranslate="vegaJhApp.qeQuestion.qeGroup">Qe Group</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let qeQuestion of qeQuestions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/qe-question', qeQuestion.id, 'view']">{{ qeQuestion.id }}</a>
+          </td>
+          <td>{{ qeQuestion.nodeId }}</td>
+          <td>{{ qeQuestion.text }}</td>
+          <td>{{ qeQuestion.title }}</td>
+          <td>{{ qeQuestion.questionText }}</td>
+          <td>{{ qeQuestion.note }}</td>
+          <td>{{ qeQuestion.minReplyNumber }}</td>
+          <td>{{ qeQuestion.maxReplyNumber }}</td>
+          <td>{{ qeQuestion.randomRepliesOrder }}</td>
+          <td>{{ qeQuestion.valueOfAnswerSum }}</td>
+          <td>{{ qeQuestion.attachmentsRequired }}</td>
+          <td>{{ qeQuestion.image64 }}</td>
+          <td>{{ qeQuestion.imageAlt }}</td>
+          <td>{{ qeQuestion.nodeToExpand }}</td>
+          <td>{{ qeQuestion.position }}</td>
+          <td>
+            <div *ngIf="qeQuestion.qeGroup">
+              <a [routerLink]="['/qe-group', qeQuestion.qeGroup.id, 'view']">{{ qeQuestion.qeGroup.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/qe-question', qeQuestion.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Visualizza</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/qe-question', qeQuestion.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Modifica</span>
+              </button>
+
+              <button type="submit" (click)="delete(qeQuestion)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Elimina</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="qeQuestions && qeQuestions.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

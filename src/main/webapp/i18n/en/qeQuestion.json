@@ -1,0 +1,42 @@
+{
+  "vegaJhApp": {
+    "qeQuestion": {
+      "home": {
+        "title": "Qe Questions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Qe Question",
+        "createOrEditLabel": "Create or edit a Qe Question",
+        "notFound": "No Qe Questions found"
+      },
+      "created": "A new Qe Question is created with identifier {{ param }}",
+      "updated": "A Qe Question is updated with identifier {{ param }}",
+      "deleted": "A Qe Question is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Qe Question {{ id }}?"
+      },
+      "detail": {
+        "title": "Qe Question"
+      },
+      "id": "Id",
+      "nodeId": "Node Id",
+      "text": "Text",
+      "title": "Title",
+      "questionText": "Question Text",
+      "note": "Note",
+      "minReplyNumber": "Min Reply Number",
+      "maxReplyNumber": "Max Reply Number",
+      "randomRepliesOrder": "Random Replies Order",
+      "valueOfAnswerSum": "Value Of Answer Sum",
+      "attachmentsRequired": "Attachments Required",
+      "image64": "Image 64",
+      "imageAlt": "Image Alt",
+      "nodeToExpand": "Node To Expand",
+      "position": "Position",
+      "qeReply": "Qe Reply",
+      "qeJumpExpression": "Qe Jump Expression",
+      "qeRadioGroup": "Qe Radio Group",
+      "qeCheckGroup": "Qe Check Group",
+      "qeGroup": "Qe Group"
+    }
+  }
+}

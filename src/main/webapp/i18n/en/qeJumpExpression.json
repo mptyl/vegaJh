@@ -1,0 +1,29 @@
+{
+  "vegaJhApp": {
+    "qeJumpExpression": {
+      "home": {
+        "title": "Qe Jump Expressions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Qe Jump Expression",
+        "createOrEditLabel": "Create or edit a Qe Jump Expression",
+        "notFound": "No Qe Jump Expressions found"
+      },
+      "created": "A new Qe Jump Expression is created with identifier {{ param }}",
+      "updated": "A Qe Jump Expression is updated with identifier {{ param }}",
+      "deleted": "A Qe Jump Expression is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Qe Jump Expression {{ id }}?"
+      },
+      "detail": {
+        "title": "Qe Jump Expression"
+      },
+      "id": "Id",
+      "nodeId": "Node Id",
+      "text": "Text",
+      "expression": "Expression",
+      "jumpTo": "Jump To",
+      "position": "Position",
+      "qeQuestion": "Qe Question"
+    }
+  }
+}

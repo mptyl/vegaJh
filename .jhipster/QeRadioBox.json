@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220854",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_radio_box",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "boxvalue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "checked",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeRadioBox",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeRadioGroup",
+      "otherEntityRelationshipName": "qeRadioBox",
+      "relationshipName": "qeRadioGroup",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

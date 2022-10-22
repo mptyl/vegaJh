@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220858",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_jump_expression",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nodeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "expression",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "jumpTo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeJumpExpression",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeQuestion",
+      "otherEntityRelationshipName": "qeJumpExpression",
+      "relationshipName": "qeQuestion",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

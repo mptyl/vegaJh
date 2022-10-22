@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="qeRadioGroup">
+      <h2 data-cy="qeRadioGroupDetailsHeading"><span jhiTranslate="vegaJhApp.qeRadioGroup.detail.title">Qe Radio Group</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vegaJhApp.qeRadioGroup.id">Id</span></dt>
+        <dd>
+          <span>{{ qeRadioGroup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioGroup.nodeId">Node Id</span></dt>
+        <dd>
+          <span>{{ qeRadioGroup.nodeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioGroup.text">Text</span></dt>
+        <dd>
+          <span>{{ qeRadioGroup.text }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioGroup.radioboxGroupName">Radiobox Group Name</span></dt>
+        <dd>
+          <span>{{ qeRadioGroup.radioboxGroupName }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioGroup.orientation">Orientation</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vegaJhApp.Orientation.' + qeRadioGroup.orientation }}">{{ qeRadioGroup.orientation }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioGroup.position">Position</span></dt>
+        <dd>
+          <span>{{ qeRadioGroup.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeRadioGroup.qeQuestion">Qe Question</span></dt>
+        <dd>
+          <div *ngIf="qeRadioGroup.qeQuestion">
+            <a [routerLink]="['/qe-question', qeRadioGroup.qeQuestion.id, 'view']">{{ qeRadioGroup.qeQuestion.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+      </button>
+
+      <button type="button" [routerLink]="['/qe-radio-group', qeRadioGroup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+      </button>
+    </div>
+  </div>
+</div>

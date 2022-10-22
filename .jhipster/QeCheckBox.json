@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220855",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_check_box",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "label",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "boxvalue",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "checked",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeCheckBox",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeCheckGroup",
+      "otherEntityRelationshipName": "qeCheckBox",
+      "relationshipName": "qeCheckGroup",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

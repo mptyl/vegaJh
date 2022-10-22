@@ -1,0 +1,107 @@
+{
+  "applications": "*",
+  "changelogDate": "20221018220852",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "qe_question",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "nodeId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "questionText",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "minReplyNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "maxReplyNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "randomRepliesOrder",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "valueOfAnswerSum",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "attachmentsRequired",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "image64",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imageAlt",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nodeToExpand",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "position",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "QeQuestion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "qeReply",
+      "otherEntityRelationshipName": "qeQuestion",
+      "relationshipName": "qeReply",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "qeJumpExpression",
+      "otherEntityRelationshipName": "qeQuestion",
+      "relationshipName": "qeJumpExpression",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "qeRadioGroup",
+      "otherEntityRelationshipName": "qeQuestion",
+      "relationshipName": "qeRadioGroup",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "qeCheckGroup",
+      "otherEntityRelationshipName": "qeQuestion",
+      "relationshipName": "qeCheckGroup",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "qeGroup",
+      "otherEntityRelationshipName": "qeQuestion",
+      "relationshipName": "qeGroup",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

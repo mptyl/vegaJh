@@ -1,0 +1,30 @@
+{
+  "vegaJhApp": {
+    "qeRadioGroup": {
+      "home": {
+        "title": "QeRadioGroups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Qe Radio Group",
+        "createOrEditLabel": "Genera o modifica un Qe Radio Group",
+        "notFound": "No Qe Radio Groups found"
+      },
+      "created": "&Egrave; stato generato un nuovo Qe Radio Group con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Qe Radio Group identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Qe Radio Group con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Qe Radio Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Qe Radio Group"
+      },
+      "id": "Id",
+      "nodeId": "Node Id",
+      "text": "Text",
+      "radioboxGroupName": "Radiobox Group Name",
+      "orientation": "Orientation",
+      "position": "Position",
+      "qeRadioBox": "Qe Radio Box",
+      "qeQuestion": "Qe Question"
+    }
+  }
+}

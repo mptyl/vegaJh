@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="qeReply">
+      <h2 data-cy="qeReplyDetailsHeading"><span jhiTranslate="vegaJhApp.qeReply.detail.title">Qe Reply</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vegaJhApp.qeReply.id">Id</span></dt>
+        <dd>
+          <span>{{ qeReply.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.nodeId">Node Id</span></dt>
+        <dd>
+          <span>{{ qeReply.nodeId }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.text">Text</span></dt>
+        <dd>
+          <span>{{ qeReply.text }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.title">Title</span></dt>
+        <dd>
+          <span>{{ qeReply.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.label">Label</span></dt>
+        <dd>
+          <span>{{ qeReply.label }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.replyType">Reply Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'vegaJhApp.ReplyType.' + qeReply.replyType }}">{{ qeReply.replyType }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.dateMinValue">Date Min Value</span></dt>
+        <dd>
+          <span>{{ qeReply.dateMinValue | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.dateMaxValue">Date Max Value</span></dt>
+        <dd>
+          <span>{{ qeReply.dateMaxValue | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.integerMinValue">Integer Min Value</span></dt>
+        <dd>
+          <span>{{ qeReply.integerMinValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.integerMaxValue">Integer Max Value</span></dt>
+        <dd>
+          <span>{{ qeReply.integerMaxValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.doubleMinValue">Double Min Value</span></dt>
+        <dd>
+          <span>{{ qeReply.doubleMinValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.doubleMaxValue">Double Max Value</span></dt>
+        <dd>
+          <span>{{ qeReply.doubleMaxValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.rangeMinValue">Range Min Value</span></dt>
+        <dd>
+          <span>{{ qeReply.rangeMinValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.rangeMaxValue">Range Max Value</span></dt>
+        <dd>
+          <span>{{ qeReply.rangeMaxValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.selectList">Select List</span></dt>
+        <dd>
+          <span>{{ qeReply.selectList }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.step">Step</span></dt>
+        <dd>
+          <span>{{ qeReply.step }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.replyPattern">Reply Pattern</span></dt>
+        <dd>
+          <span>{{ qeReply.replyPattern }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.multiple">Multiple</span></dt>
+        <dd>
+          <span>{{ qeReply.multiple }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.placeHolder">Place Holder</span></dt>
+        <dd>
+          <span>{{ qeReply.placeHolder }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.replyRequired">Reply Required</span></dt>
+        <dd>
+          <span>{{ qeReply.replyRequired }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.booleanValue">Boolean Value</span></dt>
+        <dd>
+          <span>{{ qeReply.booleanValue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.withComment">With Comment</span></dt>
+        <dd>
+          <span>{{ qeReply.withComment }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.position">Position</span></dt>
+        <dd>
+          <span>{{ qeReply.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeReply.qeQuestion">Qe Question</span></dt>
+        <dd>
+          <div *ngIf="qeReply.qeQuestion">
+            <a [routerLink]="['/qe-question', qeReply.qeQuestion.id, 'view']">{{ qeReply.qeQuestion.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+      </button>
+
+      <button type="button" [routerLink]="['/qe-reply', qeReply.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+      </button>
+    </div>
+  </div>
+</div>

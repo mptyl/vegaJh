@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="qeCheckBox">
+      <h2 data-cy="qeCheckBoxDetailsHeading"><span jhiTranslate="vegaJhApp.qeCheckBox.detail.title">Qe Check Box</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vegaJhApp.qeCheckBox.id">Id</span></dt>
+        <dd>
+          <span>{{ qeCheckBox.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckBox.label">Label</span></dt>
+        <dd>
+          <span>{{ qeCheckBox.label }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckBox.boxvalue">Boxvalue</span></dt>
+        <dd>
+          <span>{{ qeCheckBox.boxvalue }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckBox.checked">Checked</span></dt>
+        <dd>
+          <span>{{ qeCheckBox.checked }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckBox.position">Position</span></dt>
+        <dd>
+          <span>{{ qeCheckBox.position }}</span>
+        </dd>
+        <dt><span jhiTranslate="vegaJhApp.qeCheckBox.qeCheckGroup">Qe Check Group</span></dt>
+        <dd>
+          <div *ngIf="qeCheckBox.qeCheckGroup">
+            <a [routerLink]="['/qe-check-group', qeCheckBox.qeCheckGroup.id, 'view']">{{ qeCheckBox.qeCheckGroup.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Indietro</span>
+      </button>
+
+      <button type="button" [routerLink]="['/qe-check-box', qeCheckBox.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Modifica</span>
+      </button>
+    </div>
+  </div>
+</div>
