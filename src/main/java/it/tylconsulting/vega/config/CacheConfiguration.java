@@ -69,6 +69,7 @@ public class CacheConfiguration {
             createCache(cm, it.tylconsulting.vega.domain.QeCheckGroup.class.getName());
             createCache(cm, it.tylconsulting.vega.domain.QeCheckGroup.class.getName() + ".qeCheckBoxes");
             createCache(cm, it.tylconsulting.vega.domain.QeJumpExpression.class.getName());
+            createCache(cm, it.tylconsulting.vega.domain.TestEntity.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

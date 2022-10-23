@@ -18,6 +18,7 @@
         "qeRadioGroup": "Qe Radio Group",
         "qeCheckGroup": "Qe Check Group",
         "qeJumpExpression": "Qe Jump Expression",
+        "testEntity": "Test Entity",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -45,7 +45,7 @@ public class TylUtil {
             case "BooleanFilter" ->
                 mapBooleanFilter((ch.ralscha.extdirectspring.filter.BooleanFilter) filter, criteria);
             case "DateFilter" -> mapDateFilter((ch.ralscha.extdirectspring.filter.DateFilter) filter, criteria);
-            case "ListFilter" -> mapListFilter((ch.ralscha.extdirectspring.filter.DateFilter) filter, criteria);
+            //case "ListFilter" -> mapListFilter((ch.ralscha.extdirectspring.filter.DateFilter) filter, criteria);
         }
     }
 

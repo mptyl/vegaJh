@@ -28,6 +28,7 @@
     <include file="config/liquibase/changelog/20221018220856_added_entity_QeRadioGroup.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221018220857_added_entity_QeCheckGroup.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221018220858_added_entity_QeJumpExpression.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20221022114452_added_entity_TestEntity.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20221018220848_added_entity_constraints_Questionnaire.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20221018220851_added_entity_constraints_QeGroup.xml" relativeToChangelogFile="false"/>

@@ -30,7 +30,8 @@
       "QeCheckBox",
       "QeRadioGroup",
       "QeCheckGroup",
-      "QeJumpExpression"
+      "QeJumpExpression",
+      "TestEntity"
     ],
     "entitySuffix": "",
     "gitCompany": "",
@@ -38,7 +39,7 @@
     "jhipsterVersion": "7.9.3",
     "jwtSecretKey": "NjcyMWEzYmIwMDMxM2NkMWUzYzEwNmRjOWUzZWM5MmFlNTgyNTM1ZjkzMWM5NmQ2N2E5YzhkYzFiNDA2YTM0M2MxYmY2ZmZjODI3NDc0MGFlYTlmYWU1NWNiMjMwYjI3YzljNjIwZTk0MWE5M2ZlZjBmYWJmZjY0NDMyMjM2NGM=",
     "languages": ["it", "en"],
-    "lastLiquibaseTimestamp": 1666130938000,
+    "lastLiquibaseTimestamp": 1666439092000,
     "messageBroker": false,
     "nativeLanguage": "it",
     "otherModules": [],

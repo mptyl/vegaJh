@@ -59,6 +59,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'vegaJhApp.qeJumpExpression.home.title' },
         loadChildren: () => import('./qe-jump-expression/qe-jump-expression.module').then(m => m.QeJumpExpressionModule),
       },
+      {
+        path: 'test-entity',
+        data: { pageTitle: 'vegaJhApp.testEntity.home.title' },
+        loadChildren: () => import('./test-entity/test-entity.module').then(m => m.TestEntityModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],
