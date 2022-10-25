@@ -1,0 +1,282 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="marcopancotti (generated)" id="1666641219618-1">
+        <createSequence incrementBy="50" sequenceName="sequence_generator" startValue="1"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-2">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-3">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="TIMESTAMP"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="TIMESTAMP"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(10)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="TIMESTAMP"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-4">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_user_authorityPK"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="jhi_user_authorityPK"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-5">
+        <createTable tableName="qe_check_box">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_check_boxPK"/>
+            </column>
+            <column name="boxvalue" type="VARCHAR(255)"/>
+            <column name="checked" type="BOOLEAN"/>
+            <column name="label" type="VARCHAR(255)"/>
+            <column name="position" type="INT"/>
+            <column name="qe_check_group_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-6">
+        <createTable tableName="qe_check_group">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_check_groupPK"/>
+            </column>
+            <column name="node_id" type="VARCHAR(255)"/>
+            <column name="orientation" type="VARCHAR(255)"/>
+            <column name="positio" type="INT"/>
+            <column name="radiobox_group_name" type="VARCHAR(255)"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="qe_question_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-7">
+        <createTable tableName="qe_group">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_groupPK"/>
+            </column>
+            <column name="node_id" type="VARCHAR(255)"/>
+            <column name="position" type="INT"/>
+            <column name="random" type="BOOLEAN"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="questionnaire_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-8">
+        <createTable tableName="qe_jump_expression">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_jump_expressionPK"/>
+            </column>
+            <column name="expression" type="VARCHAR(255)"/>
+            <column name="jump_to" type="VARCHAR(255)"/>
+            <column name="node_id" type="VARCHAR(255)"/>
+            <column name="position" type="INT"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="qe_question_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-9">
+        <createTable tableName="qe_question">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_questionPK"/>
+            </column>
+            <column name="attachments_required" type="INT"/>
+            <column name="image_64" type="VARCHAR(255)"/>
+            <column name="image_alt" type="VARCHAR(255)"/>
+            <column name="max_reply_number" type="INT"/>
+            <column name="min_reply_number" type="INT"/>
+            <column name="node_id" type="VARCHAR(255)"/>
+            <column name="node_to_expand" type="BIGINT"/>
+            <column name="note" type="VARCHAR(255)"/>
+            <column name="position" type="INT"/>
+            <column name="question_text" type="VARCHAR(255)"/>
+            <column name="random_replies_order" type="BOOLEAN"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="value_of_answer_sum" type="INT"/>
+            <column name="qe_group_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-10">
+        <createTable tableName="qe_radio_box">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_radio_boxPK"/>
+            </column>
+            <column name="boxvalue" type="VARCHAR(255)"/>
+            <column name="checked" type="BOOLEAN"/>
+            <column name="label" type="VARCHAR(255)"/>
+            <column name="position" type="INT"/>
+            <column name="qe_radio_group_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-11">
+        <createTable tableName="qe_radio_group">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_radio_groupPK"/>
+            </column>
+            <column name="node_id" type="VARCHAR(255)"/>
+            <column name="orientation" type="VARCHAR(255)"/>
+            <column name="position" type="INT"/>
+            <column name="radiobox_group_name" type="VARCHAR(255)"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="qe_question_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-12">
+        <createTable tableName="qe_reply">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="qe_replyPK"/>
+            </column>
+            <column name="boolean_value" type="BOOLEAN"/>
+            <column name="date_max_value" type="date"/>
+            <column name="date_min_value" type="date"/>
+            <column name="double_max_value" type="DOUBLE PRECISION"/>
+            <column name="double_min_value" type="DOUBLE PRECISION"/>
+            <column name="integer_max_value" type="INT"/>
+            <column name="integer_min_value" type="INT"/>
+            <column name="label" type="VARCHAR(255)"/>
+            <column name="multiple" type="BOOLEAN"/>
+            <column name="node_id" type="VARCHAR(255)"/>
+            <column name="place_holder" type="VARCHAR(255)"/>
+            <column name="position" type="INT"/>
+            <column name="range_max_value" type="INT"/>
+            <column name="range_min_value" type="INT"/>
+            <column name="reply_pattern" type="VARCHAR(255)"/>
+            <column name="reply_required" type="BOOLEAN"/>
+            <column name="reply_type" type="VARCHAR(255)"/>
+            <column name="select_list" type="VARCHAR(255)"/>
+            <column name="step" type="INT"/>
+            <column name="text" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="with_comment" type="BOOLEAN"/>
+            <column name="qe_question_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-13">
+        <createTable tableName="questionnaire">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="questionnairePK"/>
+            </column>
+            <column name="attachments" type="INT"/>
+            <column name="compilation_time" type="INT"/>
+            <column name="forced_termination_time" type="INT"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="image_alt" type="VARCHAR(255)"/>
+            <column name="instructions" type="VARCHAR(255)"/>
+            <column name="json" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="notes" type="VARCHAR(255)"/>
+            <column name="questionnaire_type" type="VARCHAR(255)"/>
+            <column name="save_text" type="VARCHAR(255)"/>
+            <column name="search_text" type="VARCHAR(255)"/>
+            <column name="status" type="INT"/>
+            <column name="sub_title" type="VARCHAR(255)"/>
+            <column name="subject_to_evaluation" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="used_seconds" type="INT"/>
+            <column name="version" type="VARCHAR(255)"/>
+            <column name="xml" type="VARCHAR(255)"/>
+            <column name="questionnaire_group_id" type="BIGINT"/>
+            <column name="questionnaire_profile_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-14">
+        <createTable tableName="questionnaire_group">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="questionnaire_groupPK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-15">
+        <createTable tableName="questionnaire_profile">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="questionnaire_profilePK"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-16">
+        <createTable tableName="test_entity">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="test_entityPK"/>
+            </column>
+            <column name="big_decimal_field" type="numeric(21, 2)"/>
+            <column name="boolean_field" type="BOOLEAN"/>
+            <column name="double_field" type="DOUBLE PRECISION"/>
+            <column name="float_field" type="FLOAT"/>
+            <column name="integer_field" type="INT"/>
+            <column name="local_date_field" type="date"/>
+            <column name="long_field" type="BIGINT"/>
+            <column name="string_field" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-17">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-18">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-19">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-20">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-21">
+        <addForeignKeyConstraint baseColumnNames="questionnaire_group_id" baseTableName="questionnaire" constraintName="FKa3alaxlq6c04f2qcrldus55w9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="questionnaire_group" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-22">
+        <addForeignKeyConstraint baseColumnNames="qe_check_group_id" baseTableName="qe_check_box" constraintName="FKb5k9heuwenpqni93q7ijgajy0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="qe_check_group" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-23">
+        <addForeignKeyConstraint baseColumnNames="qe_radio_group_id" baseTableName="qe_radio_box" constraintName="FKj1ijt3eyfro918hu8bgegvxwm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="qe_radio_group" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-24">
+        <addForeignKeyConstraint baseColumnNames="qe_question_id" baseTableName="qe_jump_expression" constraintName="FKjw5crh0s5lylvx0cki4wmvm8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="qe_question" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-25">
+        <addForeignKeyConstraint baseColumnNames="questionnaire_profile_id" baseTableName="questionnaire" constraintName="FKk7ry75lrtcsa5llxmdijs9ef8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="questionnaire_profile" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-26">
+        <addForeignKeyConstraint baseColumnNames="qe_question_id" baseTableName="qe_reply" constraintName="FKkw754fu2vfoaisn1artjvrn2j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="qe_question" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-27">
+        <addForeignKeyConstraint baseColumnNames="qe_question_id" baseTableName="qe_radio_group" constraintName="FKmsq8356fw608tfcq1vq9wf5fc" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="qe_question" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-28">
+        <addForeignKeyConstraint baseColumnNames="qe_group_id" baseTableName="qe_question" constraintName="FKn7auytcwdi48k3simjrx6dkcs" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="qe_group" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-29">
+        <addForeignKeyConstraint baseColumnNames="qe_question_id" baseTableName="qe_check_group" constraintName="FKqa1shngu8ehygq25j3wyjb0jt" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="qe_question" validate="true"/>
+    </changeSet>
+    <changeSet author="marcopancotti (generated)" id="1666641219618-30">
+        <addForeignKeyConstraint baseColumnNames="questionnaire_id" baseTableName="qe_group" constraintName="FKqvg2gdhatgbbe17yv8spf14nu" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="questionnaire" validate="true"/>
+    </changeSet>
+</databaseChangeLog>

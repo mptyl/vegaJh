@@ -2,6 +2,7 @@ package it.tylconsulting.vega.tylextension;
 
 import ch.ralscha.extdirectspring.filter.*;
 import it.tylconsulting.vega.service.criteria.QuestionnaireCriteria;
+import it.tylconsulting.vega.util.TylExtCriteriaMapper;
 import it.tylconsulting.vega.util.TylUtil;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class TestExtJsMapper {
         filters.add(numericFilter);
 
 
-        QuestionnaireCriteria qc2 = (QuestionnaireCriteria) TylUtil.mapCriterias(filters,qc);
+        QuestionnaireCriteria qc2 = (QuestionnaireCriteria) TylExtCriteriaMapper.mapCriterias(filters,qc);
         System.out.println(qc2.getName());
         System.out.println(qc2.getId());
 

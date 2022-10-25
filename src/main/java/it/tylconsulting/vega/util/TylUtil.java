@@ -19,7 +19,7 @@ import java.time.temporal.Temporal;
 import java.util.List;
 
 public class TylUtil {
-    public static Criteria mapCriterias(List<Filter> filters, Criteria criteria) {
+ /*   public static Criteria mapCriterias(List<Filter> filters, Criteria criteria) {
         Criteria myCriteria = criteria;
         filters.forEach(filter -> {
             try {
@@ -200,7 +200,7 @@ public class TylUtil {
             case LESS_THAN -> criteriaFilter.setLessThan((Comparable) value);
         }
         meth.invoke(criteria, criteriaFilter);
-    }
+    }*/
 
 
     //region Creazione sortable

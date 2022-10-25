@@ -87,8 +87,8 @@ public class SecurityConfiguration {
             .antMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)
 
             .antMatchers("/api.js/**").permitAll()
-
-            .antMatchers("/api/**").authenticated()
+            .antMatchers("/api/**").permitAll()
+            //.antMatchers("/api/**").authenticated()
             .antMatchers("/management/health").permitAll()
             .antMatchers("/management/health/**").permitAll()
             .antMatchers("/management/info").permitAll()

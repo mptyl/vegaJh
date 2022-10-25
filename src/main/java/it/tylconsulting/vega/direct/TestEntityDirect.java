@@ -13,6 +13,7 @@ import it.tylconsulting.vega.service.criteria.QuestionnaireCriteria;
 import it.tylconsulting.vega.service.criteria.TestEntityCriteria;
 import it.tylconsulting.vega.service.dto.QuestionnaireDTO;
 import it.tylconsulting.vega.service.dto.TestEntityDTO;
+import it.tylconsulting.vega.util.TylExtCriteriaMapper;
 import it.tylconsulting.vega.util.TylUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,7 +36,7 @@ public class TestEntityDirect {
     public ExtDirectStoreResult<TestEntityDTO> loadAllTestEntities(ExtDirectStoreReadRequest request) {
 
         TestEntityCriteria testEntityCriteria=new TestEntityCriteria();
-        TylUtil.mapCriterias(request.getFilters(), testEntityCriteria);
+        TylExtCriteriaMapper.mapCriterias(request.getFilters(), testEntityCriteria);
 
 
         // Conversione
