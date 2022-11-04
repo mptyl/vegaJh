@@ -43,7 +43,7 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
 
     private StringFilter name;
 
-    private StringFilter version;
+    private StringFilter questionnaireVersion;
 
     private StringFilter title;
 
@@ -79,6 +79,16 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
 
     private IntegerFilter attachments;
 
+    private StringFilter createdBy;
+
+    private StringFilter modifiedBy;
+
+    private LongFilter version;
+
+    private LongFilter modifiedDate;
+
+    private LongFilter createdDate;
+
     private LongFilter qeGroupId;
 
     private LongFilter questionnaireGroupId;
@@ -92,7 +102,7 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
     public QuestionnaireCriteria(QuestionnaireCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.name = other.name == null ? null : other.name.copy();
-        this.version = other.version == null ? null : other.version.copy();
+        this.questionnaireVersion = other.questionnaireVersion == null ? null : other.questionnaireVersion.copy();
         this.title = other.title == null ? null : other.title.copy();
         this.subTitle = other.subTitle == null ? null : other.subTitle.copy();
         this.notes = other.notes == null ? null : other.notes.copy();
@@ -110,6 +120,11 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
         this.subjectToEvaluation = other.subjectToEvaluation == null ? null : other.subjectToEvaluation.copy();
         this.questionnaireType = other.questionnaireType == null ? null : other.questionnaireType.copy();
         this.attachments = other.attachments == null ? null : other.attachments.copy();
+        this.createdBy = other.createdBy == null ? null : other.createdBy.copy();
+        this.modifiedBy = other.modifiedBy == null ? null : other.modifiedBy.copy();
+        this.version = other.version == null ? null : other.version.copy();
+        this.modifiedDate = other.modifiedDate == null ? null : other.modifiedDate.copy();
+        this.createdDate = other.createdDate == null ? null : other.createdDate.copy();
         this.qeGroupId = other.qeGroupId == null ? null : other.qeGroupId.copy();
         this.questionnaireGroupId = other.questionnaireGroupId == null ? null : other.questionnaireGroupId.copy();
         this.questionnaireProfileId = other.questionnaireProfileId == null ? null : other.questionnaireProfileId.copy();
@@ -151,19 +166,19 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
         this.name = name;
     }
 
-    public StringFilter getVersion() {
-        return version;
+    public StringFilter getQuestionnaireVersion() {
+        return questionnaireVersion;
     }
 
-    public StringFilter version() {
-        if (version == null) {
-            version = new StringFilter();
+    public StringFilter questionnaireVersion() {
+        if (questionnaireVersion == null) {
+            questionnaireVersion = new StringFilter();
         }
-        return version;
+        return questionnaireVersion;
     }
 
-    public void setVersion(StringFilter version) {
-        this.version = version;
+    public void setQuestionnaireVersion(StringFilter questionnaireVersion) {
+        this.questionnaireVersion = questionnaireVersion;
     }
 
     public StringFilter getTitle() {
@@ -421,6 +436,81 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
         this.attachments = attachments;
     }
 
+    public StringFilter getCreatedBy() {
+        return createdBy;
+    }
+
+    public StringFilter createdBy() {
+        if (createdBy == null) {
+            createdBy = new StringFilter();
+        }
+        return createdBy;
+    }
+
+    public void setCreatedBy(StringFilter createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public StringFilter getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public StringFilter modifiedBy() {
+        if (modifiedBy == null) {
+            modifiedBy = new StringFilter();
+        }
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(StringFilter modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public LongFilter getVersion() {
+        return version;
+    }
+
+    public LongFilter version() {
+        if (version == null) {
+            version = new LongFilter();
+        }
+        return version;
+    }
+
+    public void setVersion(LongFilter version) {
+        this.version = version;
+    }
+
+    public LongFilter getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public LongFilter modifiedDate() {
+        if (modifiedDate == null) {
+            modifiedDate = new LongFilter();
+        }
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(LongFilter modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public LongFilter getCreatedDate() {
+        return createdDate;
+    }
+
+    public LongFilter createdDate() {
+        if (createdDate == null) {
+            createdDate = new LongFilter();
+        }
+        return createdDate;
+    }
+
+    public void setCreatedDate(LongFilter createdDate) {
+        this.createdDate = createdDate;
+    }
+
     public LongFilter getQeGroupId() {
         return qeGroupId;
     }
@@ -486,7 +576,7 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
         return (
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
-            Objects.equals(version, that.version) &&
+            Objects.equals(questionnaireVersion, that.questionnaireVersion) &&
             Objects.equals(title, that.title) &&
             Objects.equals(subTitle, that.subTitle) &&
             Objects.equals(notes, that.notes) &&
@@ -504,6 +594,11 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
             Objects.equals(subjectToEvaluation, that.subjectToEvaluation) &&
             Objects.equals(questionnaireType, that.questionnaireType) &&
             Objects.equals(attachments, that.attachments) &&
+            Objects.equals(createdBy, that.createdBy) &&
+            Objects.equals(modifiedBy, that.modifiedBy) &&
+            Objects.equals(version, that.version) &&
+            Objects.equals(modifiedDate, that.modifiedDate) &&
+            Objects.equals(createdDate, that.createdDate) &&
             Objects.equals(qeGroupId, that.qeGroupId) &&
             Objects.equals(questionnaireGroupId, that.questionnaireGroupId) &&
             Objects.equals(questionnaireProfileId, that.questionnaireProfileId) &&
@@ -516,7 +611,7 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
         return Objects.hash(
             id,
             name,
-            version,
+            questionnaireVersion,
             title,
             subTitle,
             notes,
@@ -534,6 +629,11 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
             subjectToEvaluation,
             questionnaireType,
             attachments,
+            createdBy,
+            modifiedBy,
+            version,
+            modifiedDate,
+            createdDate,
             qeGroupId,
             questionnaireGroupId,
             questionnaireProfileId,
@@ -547,7 +647,7 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
         return "QuestionnaireCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
             (name != null ? "name=" + name + ", " : "") +
-            (version != null ? "version=" + version + ", " : "") +
+            (questionnaireVersion != null ? "questionnaireVersion=" + questionnaireVersion + ", " : "") +
             (title != null ? "title=" + title + ", " : "") +
             (subTitle != null ? "subTitle=" + subTitle + ", " : "") +
             (notes != null ? "notes=" + notes + ", " : "") +
@@ -565,6 +665,11 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
             (subjectToEvaluation != null ? "subjectToEvaluation=" + subjectToEvaluation + ", " : "") +
             (questionnaireType != null ? "questionnaireType=" + questionnaireType + ", " : "") +
             (attachments != null ? "attachments=" + attachments + ", " : "") +
+            (createdBy != null ? "createdBy=" + createdBy + ", " : "") +
+            (modifiedBy != null ? "modifiedBy=" + modifiedBy + ", " : "") +
+            (version != null ? "version=" + version + ", " : "") +
+            (modifiedDate != null ? "modifiedDate=" + modifiedDate + ", " : "") +
+            (createdDate != null ? "createdDate=" + createdDate + ", " : "") +
             (qeGroupId != null ? "qeGroupId=" + qeGroupId + ", " : "") +
             (questionnaireGroupId != null ? "questionnaireGroupId=" + questionnaireGroupId + ", " : "") +
             (questionnaireProfileId != null ? "questionnaireProfileId=" + questionnaireProfileId + ", " : "") +

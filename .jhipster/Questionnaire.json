@@ -14,7 +14,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "version",
+      "fieldName": "questionnaireVersion",
       "fieldType": "String"
     },
     {
@@ -86,6 +86,26 @@
     {
       "fieldName": "attachments",
       "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "modifiedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "modifiedDate",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "Long"
     }
   ],
   "fluentMethods": true,
@@ -113,5 +133,6 @@
       "relationshipType": "many-to-one"
     }
   ],
-  "service": "serviceClass"
+  "service": "serviceClass",
+  "skipClient": true
 }

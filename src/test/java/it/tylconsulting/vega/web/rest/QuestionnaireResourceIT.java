@@ -39,8 +39,8 @@ class QuestionnaireResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_VERSION = "AAAAAAAAAA";
-    private static final String UPDATED_VERSION = "BBBBBBBBBB";
+    private static final String DEFAULT_QUESTIONNAIRE_VERSION = "AAAAAAAAAA";
+    private static final String UPDATED_QUESTIONNAIRE_VERSION = "BBBBBBBBBB";
 
     private static final String DEFAULT_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_TITLE = "BBBBBBBBBB";
@@ -98,6 +98,24 @@ class QuestionnaireResourceIT {
     private static final Integer UPDATED_ATTACHMENTS = 2;
     private static final Integer SMALLER_ATTACHMENTS = 1 - 1;
 
+    private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MODIFIED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_MODIFIED_BY = "BBBBBBBBBB";
+
+    private static final Long DEFAULT_VERSION = 1L;
+    private static final Long UPDATED_VERSION = 2L;
+    private static final Long SMALLER_VERSION = 1L - 1L;
+
+    private static final Long DEFAULT_MODIFIED_DATE = 1L;
+    private static final Long UPDATED_MODIFIED_DATE = 2L;
+    private static final Long SMALLER_MODIFIED_DATE = 1L - 1L;
+
+    private static final Long DEFAULT_CREATED_DATE = 1L;
+    private static final Long UPDATED_CREATED_DATE = 2L;
+    private static final Long SMALLER_CREATED_DATE = 1L - 1L;
+
     private static final String ENTITY_API_URL = "/api/questionnaires";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -127,7 +145,7 @@ class QuestionnaireResourceIT {
     public static Questionnaire createEntity(EntityManager em) {
         Questionnaire questionnaire = new Questionnaire()
             .name(DEFAULT_NAME)
-            .version(DEFAULT_VERSION)
+            .questionnaireVersion(DEFAULT_QUESTIONNAIRE_VERSION)
             .title(DEFAULT_TITLE)
             .subTitle(DEFAULT_SUB_TITLE)
             .notes(DEFAULT_NOTES)
@@ -144,7 +162,12 @@ class QuestionnaireResourceIT {
             .searchText(DEFAULT_SEARCH_TEXT)
             .subjectToEvaluation(DEFAULT_SUBJECT_TO_EVALUATION)
             .questionnaireType(DEFAULT_QUESTIONNAIRE_TYPE)
-            .attachments(DEFAULT_ATTACHMENTS);
+            .attachments(DEFAULT_ATTACHMENTS)
+            .createdBy(DEFAULT_CREATED_BY)
+            .modifiedBy(DEFAULT_MODIFIED_BY)
+            .version(DEFAULT_VERSION)
+            .modifiedDate(DEFAULT_MODIFIED_DATE)
+            .createdDate(DEFAULT_CREATED_DATE);
         return questionnaire;
     }
 
@@ -157,7 +180,7 @@ class QuestionnaireResourceIT {
     public static Questionnaire createUpdatedEntity(EntityManager em) {
         Questionnaire questionnaire = new Questionnaire()
             .name(UPDATED_NAME)
-            .version(UPDATED_VERSION)
+            .questionnaireVersion(UPDATED_QUESTIONNAIRE_VERSION)
             .title(UPDATED_TITLE)
             .subTitle(UPDATED_SUB_TITLE)
             .notes(UPDATED_NOTES)
@@ -174,7 +197,12 @@ class QuestionnaireResourceIT {
             .searchText(UPDATED_SEARCH_TEXT)
             .subjectToEvaluation(UPDATED_SUBJECT_TO_EVALUATION)
             .questionnaireType(UPDATED_QUESTIONNAIRE_TYPE)
-            .attachments(UPDATED_ATTACHMENTS);
+            .attachments(UPDATED_ATTACHMENTS)
+            .createdBy(UPDATED_CREATED_BY)
+            .modifiedBy(UPDATED_MODIFIED_BY)
+            .version(UPDATED_VERSION)
+            .modifiedDate(UPDATED_MODIFIED_DATE)
+            .createdDate(UPDATED_CREATED_DATE);
         return questionnaire;
     }
 
@@ -200,7 +228,7 @@ class QuestionnaireResourceIT {
         assertThat(questionnaireList).hasSize(databaseSizeBeforeCreate + 1);
         Questionnaire testQuestionnaire = questionnaireList.get(questionnaireList.size() - 1);
         assertThat(testQuestionnaire.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testQuestionnaire.getVersion()).isEqualTo(DEFAULT_VERSION);
+        assertThat(testQuestionnaire.getQuestionnaireVersion()).isEqualTo(DEFAULT_QUESTIONNAIRE_VERSION);
         assertThat(testQuestionnaire.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testQuestionnaire.getSubTitle()).isEqualTo(DEFAULT_SUB_TITLE);
         assertThat(testQuestionnaire.getNotes()).isEqualTo(DEFAULT_NOTES);
@@ -218,6 +246,11 @@ class QuestionnaireResourceIT {
         assertThat(testQuestionnaire.getSubjectToEvaluation()).isEqualTo(DEFAULT_SUBJECT_TO_EVALUATION);
         assertThat(testQuestionnaire.getQuestionnaireType()).isEqualTo(DEFAULT_QUESTIONNAIRE_TYPE);
         assertThat(testQuestionnaire.getAttachments()).isEqualTo(DEFAULT_ATTACHMENTS);
+        assertThat(testQuestionnaire.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
+        assertThat(testQuestionnaire.getModifiedBy()).isEqualTo(DEFAULT_MODIFIED_BY);
+        assertThat(testQuestionnaire.getVersion()).isEqualTo(DEFAULT_VERSION);
+        assertThat(testQuestionnaire.getModifiedDate()).isEqualTo(DEFAULT_MODIFIED_DATE);
+        assertThat(testQuestionnaire.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
     }
 
     @Test
@@ -254,7 +287,7 @@ class QuestionnaireResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(questionnaire.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION)))
+            .andExpect(jsonPath("$.[*].questionnaireVersion").value(hasItem(DEFAULT_QUESTIONNAIRE_VERSION)))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].subTitle").value(hasItem(DEFAULT_SUB_TITLE)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)))
@@ -271,7 +304,12 @@ class QuestionnaireResourceIT {
             .andExpect(jsonPath("$.[*].searchText").value(hasItem(DEFAULT_SEARCH_TEXT)))
             .andExpect(jsonPath("$.[*].subjectToEvaluation").value(hasItem(DEFAULT_SUBJECT_TO_EVALUATION)))
             .andExpect(jsonPath("$.[*].questionnaireType").value(hasItem(DEFAULT_QUESTIONNAIRE_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].attachments").value(hasItem(DEFAULT_ATTACHMENTS)));
+            .andExpect(jsonPath("$.[*].attachments").value(hasItem(DEFAULT_ATTACHMENTS)))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
+            .andExpect(jsonPath("$.[*].modifiedBy").value(hasItem(DEFAULT_MODIFIED_BY)))
+            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.intValue())))
+            .andExpect(jsonPath("$.[*].modifiedDate").value(hasItem(DEFAULT_MODIFIED_DATE.intValue())))
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())));
     }
 
     @Test
@@ -287,7 +325,7 @@ class QuestionnaireResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(questionnaire.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
-            .andExpect(jsonPath("$.version").value(DEFAULT_VERSION))
+            .andExpect(jsonPath("$.questionnaireVersion").value(DEFAULT_QUESTIONNAIRE_VERSION))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.subTitle").value(DEFAULT_SUB_TITLE))
             .andExpect(jsonPath("$.notes").value(DEFAULT_NOTES))
@@ -304,7 +342,12 @@ class QuestionnaireResourceIT {
             .andExpect(jsonPath("$.searchText").value(DEFAULT_SEARCH_TEXT))
             .andExpect(jsonPath("$.subjectToEvaluation").value(DEFAULT_SUBJECT_TO_EVALUATION))
             .andExpect(jsonPath("$.questionnaireType").value(DEFAULT_QUESTIONNAIRE_TYPE.toString()))
-            .andExpect(jsonPath("$.attachments").value(DEFAULT_ATTACHMENTS));
+            .andExpect(jsonPath("$.attachments").value(DEFAULT_ATTACHMENTS))
+            .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY))
+            .andExpect(jsonPath("$.modifiedBy").value(DEFAULT_MODIFIED_BY))
+            .andExpect(jsonPath("$.version").value(DEFAULT_VERSION.intValue()))
+            .andExpect(jsonPath("$.modifiedDate").value(DEFAULT_MODIFIED_DATE.intValue()))
+            .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()));
     }
 
     @Test
@@ -392,67 +435,67 @@ class QuestionnaireResourceIT {
 
     @Test
     @Transactional
-    void getAllQuestionnairesByVersionIsEqualToSomething() throws Exception {
+    void getAllQuestionnairesByQuestionnaireVersionIsEqualToSomething() throws Exception {
         // Initialize the database
         questionnaireRepository.saveAndFlush(questionnaire);
 
-        // Get all the questionnaireList where version equals to DEFAULT_VERSION
-        defaultQuestionnaireShouldBeFound("version.equals=" + DEFAULT_VERSION);
+        // Get all the questionnaireList where questionnaireVersion equals to DEFAULT_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldBeFound("questionnaireVersion.equals=" + DEFAULT_QUESTIONNAIRE_VERSION);
 
-        // Get all the questionnaireList where version equals to UPDATED_VERSION
-        defaultQuestionnaireShouldNotBeFound("version.equals=" + UPDATED_VERSION);
+        // Get all the questionnaireList where questionnaireVersion equals to UPDATED_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldNotBeFound("questionnaireVersion.equals=" + UPDATED_QUESTIONNAIRE_VERSION);
     }
 
     @Test
     @Transactional
-    void getAllQuestionnairesByVersionIsInShouldWork() throws Exception {
+    void getAllQuestionnairesByQuestionnaireVersionIsInShouldWork() throws Exception {
         // Initialize the database
         questionnaireRepository.saveAndFlush(questionnaire);
 
-        // Get all the questionnaireList where version in DEFAULT_VERSION or UPDATED_VERSION
-        defaultQuestionnaireShouldBeFound("version.in=" + DEFAULT_VERSION + "," + UPDATED_VERSION);
+        // Get all the questionnaireList where questionnaireVersion in DEFAULT_QUESTIONNAIRE_VERSION or UPDATED_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldBeFound("questionnaireVersion.in=" + DEFAULT_QUESTIONNAIRE_VERSION + "," + UPDATED_QUESTIONNAIRE_VERSION);
 
-        // Get all the questionnaireList where version equals to UPDATED_VERSION
-        defaultQuestionnaireShouldNotBeFound("version.in=" + UPDATED_VERSION);
+        // Get all the questionnaireList where questionnaireVersion equals to UPDATED_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldNotBeFound("questionnaireVersion.in=" + UPDATED_QUESTIONNAIRE_VERSION);
     }
 
     @Test
     @Transactional
-    void getAllQuestionnairesByVersionIsNullOrNotNull() throws Exception {
+    void getAllQuestionnairesByQuestionnaireVersionIsNullOrNotNull() throws Exception {
         // Initialize the database
         questionnaireRepository.saveAndFlush(questionnaire);
 
-        // Get all the questionnaireList where version is not null
-        defaultQuestionnaireShouldBeFound("version.specified=true");
+        // Get all the questionnaireList where questionnaireVersion is not null
+        defaultQuestionnaireShouldBeFound("questionnaireVersion.specified=true");
 
-        // Get all the questionnaireList where version is null
-        defaultQuestionnaireShouldNotBeFound("version.specified=false");
+        // Get all the questionnaireList where questionnaireVersion is null
+        defaultQuestionnaireShouldNotBeFound("questionnaireVersion.specified=false");
     }
 
     @Test
     @Transactional
-    void getAllQuestionnairesByVersionContainsSomething() throws Exception {
+    void getAllQuestionnairesByQuestionnaireVersionContainsSomething() throws Exception {
         // Initialize the database
         questionnaireRepository.saveAndFlush(questionnaire);
 
-        // Get all the questionnaireList where version contains DEFAULT_VERSION
-        defaultQuestionnaireShouldBeFound("version.contains=" + DEFAULT_VERSION);
+        // Get all the questionnaireList where questionnaireVersion contains DEFAULT_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldBeFound("questionnaireVersion.contains=" + DEFAULT_QUESTIONNAIRE_VERSION);
 
-        // Get all the questionnaireList where version contains UPDATED_VERSION
-        defaultQuestionnaireShouldNotBeFound("version.contains=" + UPDATED_VERSION);
+        // Get all the questionnaireList where questionnaireVersion contains UPDATED_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldNotBeFound("questionnaireVersion.contains=" + UPDATED_QUESTIONNAIRE_VERSION);
     }
 
     @Test
     @Transactional
-    void getAllQuestionnairesByVersionNotContainsSomething() throws Exception {
+    void getAllQuestionnairesByQuestionnaireVersionNotContainsSomething() throws Exception {
         // Initialize the database
         questionnaireRepository.saveAndFlush(questionnaire);
 
-        // Get all the questionnaireList where version does not contain DEFAULT_VERSION
-        defaultQuestionnaireShouldNotBeFound("version.doesNotContain=" + DEFAULT_VERSION);
+        // Get all the questionnaireList where questionnaireVersion does not contain DEFAULT_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldNotBeFound("questionnaireVersion.doesNotContain=" + DEFAULT_QUESTIONNAIRE_VERSION);
 
-        // Get all the questionnaireList where version does not contain UPDATED_VERSION
-        defaultQuestionnaireShouldBeFound("version.doesNotContain=" + UPDATED_VERSION);
+        // Get all the questionnaireList where questionnaireVersion does not contain UPDATED_QUESTIONNAIRE_VERSION
+        defaultQuestionnaireShouldBeFound("questionnaireVersion.doesNotContain=" + UPDATED_QUESTIONNAIRE_VERSION);
     }
 
     @Test
@@ -1668,6 +1711,409 @@ class QuestionnaireResourceIT {
 
     @Test
     @Transactional
+    void getAllQuestionnairesByCreatedByIsEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdBy equals to DEFAULT_CREATED_BY
+        defaultQuestionnaireShouldBeFound("createdBy.equals=" + DEFAULT_CREATED_BY);
+
+        // Get all the questionnaireList where createdBy equals to UPDATED_CREATED_BY
+        defaultQuestionnaireShouldNotBeFound("createdBy.equals=" + UPDATED_CREATED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedByIsInShouldWork() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdBy in DEFAULT_CREATED_BY or UPDATED_CREATED_BY
+        defaultQuestionnaireShouldBeFound("createdBy.in=" + DEFAULT_CREATED_BY + "," + UPDATED_CREATED_BY);
+
+        // Get all the questionnaireList where createdBy equals to UPDATED_CREATED_BY
+        defaultQuestionnaireShouldNotBeFound("createdBy.in=" + UPDATED_CREATED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedByIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdBy is not null
+        defaultQuestionnaireShouldBeFound("createdBy.specified=true");
+
+        // Get all the questionnaireList where createdBy is null
+        defaultQuestionnaireShouldNotBeFound("createdBy.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedByContainsSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdBy contains DEFAULT_CREATED_BY
+        defaultQuestionnaireShouldBeFound("createdBy.contains=" + DEFAULT_CREATED_BY);
+
+        // Get all the questionnaireList where createdBy contains UPDATED_CREATED_BY
+        defaultQuestionnaireShouldNotBeFound("createdBy.contains=" + UPDATED_CREATED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedByNotContainsSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdBy does not contain DEFAULT_CREATED_BY
+        defaultQuestionnaireShouldNotBeFound("createdBy.doesNotContain=" + DEFAULT_CREATED_BY);
+
+        // Get all the questionnaireList where createdBy does not contain UPDATED_CREATED_BY
+        defaultQuestionnaireShouldBeFound("createdBy.doesNotContain=" + UPDATED_CREATED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedByIsEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedBy equals to DEFAULT_MODIFIED_BY
+        defaultQuestionnaireShouldBeFound("modifiedBy.equals=" + DEFAULT_MODIFIED_BY);
+
+        // Get all the questionnaireList where modifiedBy equals to UPDATED_MODIFIED_BY
+        defaultQuestionnaireShouldNotBeFound("modifiedBy.equals=" + UPDATED_MODIFIED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedByIsInShouldWork() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedBy in DEFAULT_MODIFIED_BY or UPDATED_MODIFIED_BY
+        defaultQuestionnaireShouldBeFound("modifiedBy.in=" + DEFAULT_MODIFIED_BY + "," + UPDATED_MODIFIED_BY);
+
+        // Get all the questionnaireList where modifiedBy equals to UPDATED_MODIFIED_BY
+        defaultQuestionnaireShouldNotBeFound("modifiedBy.in=" + UPDATED_MODIFIED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedByIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedBy is not null
+        defaultQuestionnaireShouldBeFound("modifiedBy.specified=true");
+
+        // Get all the questionnaireList where modifiedBy is null
+        defaultQuestionnaireShouldNotBeFound("modifiedBy.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedByContainsSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedBy contains DEFAULT_MODIFIED_BY
+        defaultQuestionnaireShouldBeFound("modifiedBy.contains=" + DEFAULT_MODIFIED_BY);
+
+        // Get all the questionnaireList where modifiedBy contains UPDATED_MODIFIED_BY
+        defaultQuestionnaireShouldNotBeFound("modifiedBy.contains=" + UPDATED_MODIFIED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedByNotContainsSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedBy does not contain DEFAULT_MODIFIED_BY
+        defaultQuestionnaireShouldNotBeFound("modifiedBy.doesNotContain=" + DEFAULT_MODIFIED_BY);
+
+        // Get all the questionnaireList where modifiedBy does not contain UPDATED_MODIFIED_BY
+        defaultQuestionnaireShouldBeFound("modifiedBy.doesNotContain=" + UPDATED_MODIFIED_BY);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByVersionIsEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where version equals to DEFAULT_VERSION
+        defaultQuestionnaireShouldBeFound("version.equals=" + DEFAULT_VERSION);
+
+        // Get all the questionnaireList where version equals to UPDATED_VERSION
+        defaultQuestionnaireShouldNotBeFound("version.equals=" + UPDATED_VERSION);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByVersionIsInShouldWork() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where version in DEFAULT_VERSION or UPDATED_VERSION
+        defaultQuestionnaireShouldBeFound("version.in=" + DEFAULT_VERSION + "," + UPDATED_VERSION);
+
+        // Get all the questionnaireList where version equals to UPDATED_VERSION
+        defaultQuestionnaireShouldNotBeFound("version.in=" + UPDATED_VERSION);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByVersionIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where version is not null
+        defaultQuestionnaireShouldBeFound("version.specified=true");
+
+        // Get all the questionnaireList where version is null
+        defaultQuestionnaireShouldNotBeFound("version.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByVersionIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where version is greater than or equal to DEFAULT_VERSION
+        defaultQuestionnaireShouldBeFound("version.greaterThanOrEqual=" + DEFAULT_VERSION);
+
+        // Get all the questionnaireList where version is greater than or equal to UPDATED_VERSION
+        defaultQuestionnaireShouldNotBeFound("version.greaterThanOrEqual=" + UPDATED_VERSION);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByVersionIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where version is less than or equal to DEFAULT_VERSION
+        defaultQuestionnaireShouldBeFound("version.lessThanOrEqual=" + DEFAULT_VERSION);
+
+        // Get all the questionnaireList where version is less than or equal to SMALLER_VERSION
+        defaultQuestionnaireShouldNotBeFound("version.lessThanOrEqual=" + SMALLER_VERSION);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByVersionIsLessThanSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where version is less than DEFAULT_VERSION
+        defaultQuestionnaireShouldNotBeFound("version.lessThan=" + DEFAULT_VERSION);
+
+        // Get all the questionnaireList where version is less than UPDATED_VERSION
+        defaultQuestionnaireShouldBeFound("version.lessThan=" + UPDATED_VERSION);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByVersionIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where version is greater than DEFAULT_VERSION
+        defaultQuestionnaireShouldNotBeFound("version.greaterThan=" + DEFAULT_VERSION);
+
+        // Get all the questionnaireList where version is greater than SMALLER_VERSION
+        defaultQuestionnaireShouldBeFound("version.greaterThan=" + SMALLER_VERSION);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedDateIsEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedDate equals to DEFAULT_MODIFIED_DATE
+        defaultQuestionnaireShouldBeFound("modifiedDate.equals=" + DEFAULT_MODIFIED_DATE);
+
+        // Get all the questionnaireList where modifiedDate equals to UPDATED_MODIFIED_DATE
+        defaultQuestionnaireShouldNotBeFound("modifiedDate.equals=" + UPDATED_MODIFIED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedDateIsInShouldWork() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedDate in DEFAULT_MODIFIED_DATE or UPDATED_MODIFIED_DATE
+        defaultQuestionnaireShouldBeFound("modifiedDate.in=" + DEFAULT_MODIFIED_DATE + "," + UPDATED_MODIFIED_DATE);
+
+        // Get all the questionnaireList where modifiedDate equals to UPDATED_MODIFIED_DATE
+        defaultQuestionnaireShouldNotBeFound("modifiedDate.in=" + UPDATED_MODIFIED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedDateIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedDate is not null
+        defaultQuestionnaireShouldBeFound("modifiedDate.specified=true");
+
+        // Get all the questionnaireList where modifiedDate is null
+        defaultQuestionnaireShouldNotBeFound("modifiedDate.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedDateIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedDate is greater than or equal to DEFAULT_MODIFIED_DATE
+        defaultQuestionnaireShouldBeFound("modifiedDate.greaterThanOrEqual=" + DEFAULT_MODIFIED_DATE);
+
+        // Get all the questionnaireList where modifiedDate is greater than or equal to UPDATED_MODIFIED_DATE
+        defaultQuestionnaireShouldNotBeFound("modifiedDate.greaterThanOrEqual=" + UPDATED_MODIFIED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedDateIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedDate is less than or equal to DEFAULT_MODIFIED_DATE
+        defaultQuestionnaireShouldBeFound("modifiedDate.lessThanOrEqual=" + DEFAULT_MODIFIED_DATE);
+
+        // Get all the questionnaireList where modifiedDate is less than or equal to SMALLER_MODIFIED_DATE
+        defaultQuestionnaireShouldNotBeFound("modifiedDate.lessThanOrEqual=" + SMALLER_MODIFIED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedDateIsLessThanSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedDate is less than DEFAULT_MODIFIED_DATE
+        defaultQuestionnaireShouldNotBeFound("modifiedDate.lessThan=" + DEFAULT_MODIFIED_DATE);
+
+        // Get all the questionnaireList where modifiedDate is less than UPDATED_MODIFIED_DATE
+        defaultQuestionnaireShouldBeFound("modifiedDate.lessThan=" + UPDATED_MODIFIED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByModifiedDateIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where modifiedDate is greater than DEFAULT_MODIFIED_DATE
+        defaultQuestionnaireShouldNotBeFound("modifiedDate.greaterThan=" + DEFAULT_MODIFIED_DATE);
+
+        // Get all the questionnaireList where modifiedDate is greater than SMALLER_MODIFIED_DATE
+        defaultQuestionnaireShouldBeFound("modifiedDate.greaterThan=" + SMALLER_MODIFIED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedDateIsEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdDate equals to DEFAULT_CREATED_DATE
+        defaultQuestionnaireShouldBeFound("createdDate.equals=" + DEFAULT_CREATED_DATE);
+
+        // Get all the questionnaireList where createdDate equals to UPDATED_CREATED_DATE
+        defaultQuestionnaireShouldNotBeFound("createdDate.equals=" + UPDATED_CREATED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedDateIsInShouldWork() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdDate in DEFAULT_CREATED_DATE or UPDATED_CREATED_DATE
+        defaultQuestionnaireShouldBeFound("createdDate.in=" + DEFAULT_CREATED_DATE + "," + UPDATED_CREATED_DATE);
+
+        // Get all the questionnaireList where createdDate equals to UPDATED_CREATED_DATE
+        defaultQuestionnaireShouldNotBeFound("createdDate.in=" + UPDATED_CREATED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedDateIsNullOrNotNull() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdDate is not null
+        defaultQuestionnaireShouldBeFound("createdDate.specified=true");
+
+        // Get all the questionnaireList where createdDate is null
+        defaultQuestionnaireShouldNotBeFound("createdDate.specified=false");
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedDateIsGreaterThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdDate is greater than or equal to DEFAULT_CREATED_DATE
+        defaultQuestionnaireShouldBeFound("createdDate.greaterThanOrEqual=" + DEFAULT_CREATED_DATE);
+
+        // Get all the questionnaireList where createdDate is greater than or equal to UPDATED_CREATED_DATE
+        defaultQuestionnaireShouldNotBeFound("createdDate.greaterThanOrEqual=" + UPDATED_CREATED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedDateIsLessThanOrEqualToSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdDate is less than or equal to DEFAULT_CREATED_DATE
+        defaultQuestionnaireShouldBeFound("createdDate.lessThanOrEqual=" + DEFAULT_CREATED_DATE);
+
+        // Get all the questionnaireList where createdDate is less than or equal to SMALLER_CREATED_DATE
+        defaultQuestionnaireShouldNotBeFound("createdDate.lessThanOrEqual=" + SMALLER_CREATED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedDateIsLessThanSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdDate is less than DEFAULT_CREATED_DATE
+        defaultQuestionnaireShouldNotBeFound("createdDate.lessThan=" + DEFAULT_CREATED_DATE);
+
+        // Get all the questionnaireList where createdDate is less than UPDATED_CREATED_DATE
+        defaultQuestionnaireShouldBeFound("createdDate.lessThan=" + UPDATED_CREATED_DATE);
+    }
+
+    @Test
+    @Transactional
+    void getAllQuestionnairesByCreatedDateIsGreaterThanSomething() throws Exception {
+        // Initialize the database
+        questionnaireRepository.saveAndFlush(questionnaire);
+
+        // Get all the questionnaireList where createdDate is greater than DEFAULT_CREATED_DATE
+        defaultQuestionnaireShouldNotBeFound("createdDate.greaterThan=" + DEFAULT_CREATED_DATE);
+
+        // Get all the questionnaireList where createdDate is greater than SMALLER_CREATED_DATE
+        defaultQuestionnaireShouldBeFound("createdDate.greaterThan=" + SMALLER_CREATED_DATE);
+    }
+
+    @Test
+    @Transactional
     void getAllQuestionnairesByQeGroupIsEqualToSomething() throws Exception {
         QeGroup qeGroup;
         if (TestUtil.findAll(em, QeGroup.class).isEmpty()) {
@@ -1745,7 +2191,7 @@ class QuestionnaireResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(questionnaire.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
-            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION)))
+            .andExpect(jsonPath("$.[*].questionnaireVersion").value(hasItem(DEFAULT_QUESTIONNAIRE_VERSION)))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].subTitle").value(hasItem(DEFAULT_SUB_TITLE)))
             .andExpect(jsonPath("$.[*].notes").value(hasItem(DEFAULT_NOTES)))
@@ -1762,7 +2208,12 @@ class QuestionnaireResourceIT {
             .andExpect(jsonPath("$.[*].searchText").value(hasItem(DEFAULT_SEARCH_TEXT)))
             .andExpect(jsonPath("$.[*].subjectToEvaluation").value(hasItem(DEFAULT_SUBJECT_TO_EVALUATION)))
             .andExpect(jsonPath("$.[*].questionnaireType").value(hasItem(DEFAULT_QUESTIONNAIRE_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].attachments").value(hasItem(DEFAULT_ATTACHMENTS)));
+            .andExpect(jsonPath("$.[*].attachments").value(hasItem(DEFAULT_ATTACHMENTS)))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
+            .andExpect(jsonPath("$.[*].modifiedBy").value(hasItem(DEFAULT_MODIFIED_BY)))
+            .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.intValue())))
+            .andExpect(jsonPath("$.[*].modifiedDate").value(hasItem(DEFAULT_MODIFIED_DATE.intValue())))
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())));
 
         // Check, that the count call also returns 1
         restQuestionnaireMockMvc
@@ -1812,7 +2263,7 @@ class QuestionnaireResourceIT {
         em.detach(updatedQuestionnaire);
         updatedQuestionnaire
             .name(UPDATED_NAME)
-            .version(UPDATED_VERSION)
+            .questionnaireVersion(UPDATED_QUESTIONNAIRE_VERSION)
             .title(UPDATED_TITLE)
             .subTitle(UPDATED_SUB_TITLE)
             .notes(UPDATED_NOTES)
@@ -1829,7 +2280,12 @@ class QuestionnaireResourceIT {
             .searchText(UPDATED_SEARCH_TEXT)
             .subjectToEvaluation(UPDATED_SUBJECT_TO_EVALUATION)
             .questionnaireType(UPDATED_QUESTIONNAIRE_TYPE)
-            .attachments(UPDATED_ATTACHMENTS);
+            .attachments(UPDATED_ATTACHMENTS)
+            .createdBy(UPDATED_CREATED_BY)
+            .modifiedBy(UPDATED_MODIFIED_BY)
+            .version(UPDATED_VERSION)
+            .modifiedDate(UPDATED_MODIFIED_DATE)
+            .createdDate(UPDATED_CREATED_DATE);
         QuestionnaireDTO questionnaireDTO = questionnaireMapper.toDto(updatedQuestionnaire);
 
         restQuestionnaireMockMvc
@@ -1845,7 +2301,7 @@ class QuestionnaireResourceIT {
         assertThat(questionnaireList).hasSize(databaseSizeBeforeUpdate);
         Questionnaire testQuestionnaire = questionnaireList.get(questionnaireList.size() - 1);
         assertThat(testQuestionnaire.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testQuestionnaire.getVersion()).isEqualTo(UPDATED_VERSION);
+        assertThat(testQuestionnaire.getQuestionnaireVersion()).isEqualTo(UPDATED_QUESTIONNAIRE_VERSION);
         assertThat(testQuestionnaire.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testQuestionnaire.getSubTitle()).isEqualTo(UPDATED_SUB_TITLE);
         assertThat(testQuestionnaire.getNotes()).isEqualTo(UPDATED_NOTES);
@@ -1863,6 +2319,11 @@ class QuestionnaireResourceIT {
         assertThat(testQuestionnaire.getSubjectToEvaluation()).isEqualTo(UPDATED_SUBJECT_TO_EVALUATION);
         assertThat(testQuestionnaire.getQuestionnaireType()).isEqualTo(UPDATED_QUESTIONNAIRE_TYPE);
         assertThat(testQuestionnaire.getAttachments()).isEqualTo(UPDATED_ATTACHMENTS);
+        assertThat(testQuestionnaire.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
+        assertThat(testQuestionnaire.getModifiedBy()).isEqualTo(UPDATED_MODIFIED_BY);
+        assertThat(testQuestionnaire.getVersion()).isEqualTo(UPDATED_VERSION);
+        assertThat(testQuestionnaire.getModifiedDate()).isEqualTo(UPDATED_MODIFIED_DATE);
+        assertThat(testQuestionnaire.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
     }
 
     @Test
@@ -1945,7 +2406,7 @@ class QuestionnaireResourceIT {
         partialUpdatedQuestionnaire.setId(questionnaire.getId());
 
         partialUpdatedQuestionnaire
-            .version(UPDATED_VERSION)
+            .questionnaireVersion(UPDATED_QUESTIONNAIRE_VERSION)
             .subTitle(UPDATED_SUB_TITLE)
             .image(UPDATED_IMAGE)
             .imageAlt(UPDATED_IMAGE_ALT)
@@ -1953,7 +2414,10 @@ class QuestionnaireResourceIT {
             .status(UPDATED_STATUS)
             .json(UPDATED_JSON)
             .questionnaireType(UPDATED_QUESTIONNAIRE_TYPE)
-            .attachments(UPDATED_ATTACHMENTS);
+            .attachments(UPDATED_ATTACHMENTS)
+            .version(UPDATED_VERSION)
+            .modifiedDate(UPDATED_MODIFIED_DATE)
+            .createdDate(UPDATED_CREATED_DATE);
 
         restQuestionnaireMockMvc
             .perform(
@@ -1968,7 +2432,7 @@ class QuestionnaireResourceIT {
         assertThat(questionnaireList).hasSize(databaseSizeBeforeUpdate);
         Questionnaire testQuestionnaire = questionnaireList.get(questionnaireList.size() - 1);
         assertThat(testQuestionnaire.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testQuestionnaire.getVersion()).isEqualTo(UPDATED_VERSION);
+        assertThat(testQuestionnaire.getQuestionnaireVersion()).isEqualTo(UPDATED_QUESTIONNAIRE_VERSION);
         assertThat(testQuestionnaire.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testQuestionnaire.getSubTitle()).isEqualTo(UPDATED_SUB_TITLE);
         assertThat(testQuestionnaire.getNotes()).isEqualTo(DEFAULT_NOTES);
@@ -1986,6 +2450,11 @@ class QuestionnaireResourceIT {
         assertThat(testQuestionnaire.getSubjectToEvaluation()).isEqualTo(DEFAULT_SUBJECT_TO_EVALUATION);
         assertThat(testQuestionnaire.getQuestionnaireType()).isEqualTo(UPDATED_QUESTIONNAIRE_TYPE);
         assertThat(testQuestionnaire.getAttachments()).isEqualTo(UPDATED_ATTACHMENTS);
+        assertThat(testQuestionnaire.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
+        assertThat(testQuestionnaire.getModifiedBy()).isEqualTo(DEFAULT_MODIFIED_BY);
+        assertThat(testQuestionnaire.getVersion()).isEqualTo(UPDATED_VERSION);
+        assertThat(testQuestionnaire.getModifiedDate()).isEqualTo(UPDATED_MODIFIED_DATE);
+        assertThat(testQuestionnaire.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
     }
 
     @Test
@@ -2002,7 +2471,7 @@ class QuestionnaireResourceIT {
 
         partialUpdatedQuestionnaire
             .name(UPDATED_NAME)
-            .version(UPDATED_VERSION)
+            .questionnaireVersion(UPDATED_QUESTIONNAIRE_VERSION)
             .title(UPDATED_TITLE)
             .subTitle(UPDATED_SUB_TITLE)
             .notes(UPDATED_NOTES)
@@ -2019,7 +2488,12 @@ class QuestionnaireResourceIT {
             .searchText(UPDATED_SEARCH_TEXT)
             .subjectToEvaluation(UPDATED_SUBJECT_TO_EVALUATION)
             .questionnaireType(UPDATED_QUESTIONNAIRE_TYPE)
-            .attachments(UPDATED_ATTACHMENTS);
+            .attachments(UPDATED_ATTACHMENTS)
+            .createdBy(UPDATED_CREATED_BY)
+            .modifiedBy(UPDATED_MODIFIED_BY)
+            .version(UPDATED_VERSION)
+            .modifiedDate(UPDATED_MODIFIED_DATE)
+            .createdDate(UPDATED_CREATED_DATE);
 
         restQuestionnaireMockMvc
             .perform(
@@ -2034,7 +2508,7 @@ class QuestionnaireResourceIT {
         assertThat(questionnaireList).hasSize(databaseSizeBeforeUpdate);
         Questionnaire testQuestionnaire = questionnaireList.get(questionnaireList.size() - 1);
         assertThat(testQuestionnaire.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testQuestionnaire.getVersion()).isEqualTo(UPDATED_VERSION);
+        assertThat(testQuestionnaire.getQuestionnaireVersion()).isEqualTo(UPDATED_QUESTIONNAIRE_VERSION);
         assertThat(testQuestionnaire.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testQuestionnaire.getSubTitle()).isEqualTo(UPDATED_SUB_TITLE);
         assertThat(testQuestionnaire.getNotes()).isEqualTo(UPDATED_NOTES);
@@ -2052,6 +2526,11 @@ class QuestionnaireResourceIT {
         assertThat(testQuestionnaire.getSubjectToEvaluation()).isEqualTo(UPDATED_SUBJECT_TO_EVALUATION);
         assertThat(testQuestionnaire.getQuestionnaireType()).isEqualTo(UPDATED_QUESTIONNAIRE_TYPE);
         assertThat(testQuestionnaire.getAttachments()).isEqualTo(UPDATED_ATTACHMENTS);
+        assertThat(testQuestionnaire.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
+        assertThat(testQuestionnaire.getModifiedBy()).isEqualTo(UPDATED_MODIFIED_BY);
+        assertThat(testQuestionnaire.getVersion()).isEqualTo(UPDATED_VERSION);
+        assertThat(testQuestionnaire.getModifiedDate()).isEqualTo(UPDATED_MODIFIED_DATE);
+        assertThat(testQuestionnaire.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
     }
 
     @Test

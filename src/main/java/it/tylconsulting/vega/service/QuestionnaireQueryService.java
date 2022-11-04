@@ -8,8 +8,6 @@ import it.tylconsulting.vega.service.dto.QuestionnaireDTO;
 import it.tylconsulting.vega.service.mapper.QuestionnaireMapper;
 import java.util.List;
 import javax.persistence.criteria.JoinType;
-
-import it.tylconsulting.vega.util.TylQueryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -27,7 +25,7 @@ import tech.jhipster.service.QueryService;
  */
 @Service
 @Transactional(readOnly = true)
-public class QuestionnaireQueryService extends TylQueryService<Questionnaire> {
+public class QuestionnaireQueryService extends QueryService<Questionnaire> {
 
     private final Logger log = LoggerFactory.getLogger(QuestionnaireQueryService.class);
 
@@ -95,8 +93,9 @@ public class QuestionnaireQueryService extends TylQueryService<Questionnaire> {
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), Questionnaire_.name));
             }
-            if (criteria.getVersion() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getVersion(), Questionnaire_.version));
+            if (criteria.getQuestionnaireVersion() != null) {
+                specification =
+                    specification.and(buildStringSpecification(criteria.getQuestionnaireVersion(), Questionnaire_.questionnaireVersion));
             }
             if (criteria.getTitle() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getTitle(), Questionnaire_.title));
@@ -150,6 +149,21 @@ public class QuestionnaireQueryService extends TylQueryService<Questionnaire> {
             }
             if (criteria.getAttachments() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getAttachments(), Questionnaire_.attachments));
+            }
+            if (criteria.getCreatedBy() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCreatedBy(), Questionnaire_.createdBy));
+            }
+            if (criteria.getModifiedBy() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getModifiedBy(), Questionnaire_.modifiedBy));
+            }
+            if (criteria.getVersion() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getVersion(), Questionnaire_.version));
+            }
+            if (criteria.getModifiedDate() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getModifiedDate(), Questionnaire_.modifiedDate));
+            }
+            if (criteria.getCreatedDate() != null) {
+                specification = specification.and(buildRangeSpecification(criteria.getCreatedDate(), Questionnaire_.createdDate));
             }
             if (criteria.getQeGroupId() != null) {
                 specification =

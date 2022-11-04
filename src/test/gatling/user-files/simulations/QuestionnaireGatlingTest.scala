@@ -72,7 +72,7 @@ class QuestionnaireGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "name":"SAMPLE_TEXT"
-                , "version":"SAMPLE_TEXT"
+                , "questionnaireVersion":"SAMPLE_TEXT"
                 , "title":"SAMPLE_TEXT"
                 , "subTitle":"SAMPLE_TEXT"
                 , "notes":"SAMPLE_TEXT"
@@ -90,6 +90,11 @@ class QuestionnaireGatlingTest extends Simulation {
                 , "subjectToEvaluation":"SAMPLE_TEXT"
                 , "questionnaireType":"ANCORE"
                 , "attachments":"0"
+                , "createdBy":"SAMPLE_TEXT"
+                , "modifiedBy":"SAMPLE_TEXT"
+                , "version":"0"
+                , "modifiedDate":"0"
+                , "createdDate":"0"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_questionnaire_url"))).exitHereIfFailed

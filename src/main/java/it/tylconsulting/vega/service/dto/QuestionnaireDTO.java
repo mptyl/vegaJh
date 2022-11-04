@@ -15,7 +15,7 @@ public class QuestionnaireDTO implements Serializable {
 
     private String name;
 
-    private String version;
+    private String questionnaireVersion;
 
     private String title;
 
@@ -55,6 +55,16 @@ public class QuestionnaireDTO implements Serializable {
 
     private Integer attachments;
 
+    private String createdBy;
+
+    private String modifiedBy;
+
+    private Long version;
+
+    private Long modifiedDate;
+
+    private Long createdDate;
+
     private QuestionnaireGroupDTO questionnaireGroup;
 
     private QuestionnaireProfileDTO questionnaireProfile;
@@ -75,12 +85,12 @@ public class QuestionnaireDTO implements Serializable {
         this.name = name;
     }
 
-    public String getVersion() {
-        return version;
+    public String getQuestionnaireVersion() {
+        return questionnaireVersion;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public void setQuestionnaireVersion(String questionnaireVersion) {
+        this.questionnaireVersion = questionnaireVersion;
     }
 
     public String getTitle() {
@@ -219,6 +229,46 @@ public class QuestionnaireDTO implements Serializable {
         this.attachments = attachments;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public Long getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Long modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Long getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Long createdDate) {
+        this.createdDate = createdDate;
+    }
+
     public QuestionnaireGroupDTO getQuestionnaireGroup() {
         return questionnaireGroup;
     }
@@ -262,7 +312,7 @@ public class QuestionnaireDTO implements Serializable {
         return "QuestionnaireDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", version='" + getVersion() + "'" +
+            ", questionnaireVersion='" + getQuestionnaireVersion() + "'" +
             ", title='" + getTitle() + "'" +
             ", subTitle='" + getSubTitle() + "'" +
             ", notes='" + getNotes() + "'" +
@@ -280,6 +330,11 @@ public class QuestionnaireDTO implements Serializable {
             ", subjectToEvaluation='" + getSubjectToEvaluation() + "'" +
             ", questionnaireType='" + getQuestionnaireType() + "'" +
             ", attachments=" + getAttachments() +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", modifiedBy='" + getModifiedBy() + "'" +
+            ", version=" + getVersion() +
+            ", modifiedDate=" + getModifiedDate() +
+            ", createdDate=" + getCreatedDate() +
             ", questionnaireGroup=" + getQuestionnaireGroup() +
             ", questionnaireProfile=" + getQuestionnaireProfile() +
             "}";

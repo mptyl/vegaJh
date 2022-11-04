@@ -33,6 +33,9 @@ entity TestEntity{
     stringField String
     booleanField Boolean
     localDateField LocalDate
+    zonedDateField ZonedDateTime
+    durationField Long
+    questionnaireType QuestionnaireType
 }
 
 entity QuestionnaireProfile {

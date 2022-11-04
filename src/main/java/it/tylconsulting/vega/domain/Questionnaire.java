@@ -29,8 +29,8 @@ public class Questionnaire implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "version")
-    private String version;
+    @Column(name = "questionnaire_version")
+    private String questionnaireVersion;
 
     @Column(name = "title")
     private String title;
@@ -87,6 +87,21 @@ public class Questionnaire implements Serializable {
     @Column(name = "attachments")
     private Integer attachments;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "modified_by")
+    private String modifiedBy;
+
+    @Column(name = "version")
+    private Long version;
+
+    @Column(name = "modified_date")
+    private Long modifiedDate;
+
+    @Column(name = "created_date")
+    private Long createdDate;
+
     @OneToMany(mappedBy = "questionnaire")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "qeQuestions", "questionnaire" }, allowSetters = true)
@@ -128,17 +143,17 @@ public class Questionnaire implements Serializable {
         this.name = name;
     }
 
-    public String getVersion() {
-        return this.version;
+    public String getQuestionnaireVersion() {
+        return this.questionnaireVersion;
     }
 
-    public Questionnaire version(String version) {
-        this.setVersion(version);
+    public Questionnaire questionnaireVersion(String questionnaireVersion) {
+        this.setQuestionnaireVersion(questionnaireVersion);
         return this;
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    public void setQuestionnaireVersion(String questionnaireVersion) {
+        this.questionnaireVersion = questionnaireVersion;
     }
 
     public String getTitle() {
@@ -362,6 +377,71 @@ public class Questionnaire implements Serializable {
         this.attachments = attachments;
     }
 
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+
+    public Questionnaire createdBy(String createdBy) {
+        this.setCreatedBy(createdBy);
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getModifiedBy() {
+        return this.modifiedBy;
+    }
+
+    public Questionnaire modifiedBy(String modifiedBy) {
+        this.setModifiedBy(modifiedBy);
+        return this;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public Long getVersion() {
+        return this.version;
+    }
+
+    public Questionnaire version(Long version) {
+        this.setVersion(version);
+        return this;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public Long getModifiedDate() {
+        return this.modifiedDate;
+    }
+
+    public Questionnaire modifiedDate(Long modifiedDate) {
+        this.setModifiedDate(modifiedDate);
+        return this;
+    }
+
+    public void setModifiedDate(Long modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public Long getCreatedDate() {
+        return this.createdDate;
+    }
+
+    public Questionnaire createdDate(Long createdDate) {
+        this.setCreatedDate(createdDate);
+        return this;
+    }
+
+    public void setCreatedDate(Long createdDate) {
+        this.createdDate = createdDate;
+    }
+
     public Set<QeGroup> getQeGroups() {
         return this.qeGroups;
     }
@@ -444,7 +524,7 @@ public class Questionnaire implements Serializable {
         return "Questionnaire{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
-            ", version='" + getVersion() + "'" +
+            ", questionnaireVersion='" + getQuestionnaireVersion() + "'" +
             ", title='" + getTitle() + "'" +
             ", subTitle='" + getSubTitle() + "'" +
             ", notes='" + getNotes() + "'" +
@@ -462,6 +542,11 @@ public class Questionnaire implements Serializable {
             ", subjectToEvaluation='" + getSubjectToEvaluation() + "'" +
             ", questionnaireType='" + getQuestionnaireType() + "'" +
             ", attachments=" + getAttachments() +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", modifiedBy='" + getModifiedBy() + "'" +
+            ", version=" + getVersion() +
+            ", modifiedDate=" + getModifiedDate() +
+            ", createdDate=" + getCreatedDate() +
             "}";
     }
 }

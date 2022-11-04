@@ -136,6 +136,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.4</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -302,6 +303,9 @@
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-core</artifactId>
         </dependency>
+
+        <!-- Inserite da MP -->
+
         <dependency>
             <groupId>ch.ralscha</groupId>
             <artifactId>extdirectspring</artifactId>
@@ -318,7 +322,13 @@
             <artifactId>javafaker</artifactId>
             <version>1.0.2</version>
         </dependency>
-<!--        <dependency>-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+        <!--        <dependency>-->
 <!--            <groupId>com.fasterxml.jackson.datatype</groupId>-->
 <!--            <artifactId>jackson-datatype-jsr310</artifactId>-->
 <!--            <version>2.14.0-rc2</version>-->
@@ -334,8 +344,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>14</source>
-                    <target>14</target>
+                    <source>16</source>
+                    <target>16</target>
                 </configuration>
             </plugin>
             <plugin>
