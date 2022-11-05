@@ -1,4 +1,4 @@
-package it.tylconsulting.vega.extjs;
+package it.tylconsulting.vega.util.extjsHelpers.sort;
 
 public enum SortDirection {
     ASCENDING("ASC"),

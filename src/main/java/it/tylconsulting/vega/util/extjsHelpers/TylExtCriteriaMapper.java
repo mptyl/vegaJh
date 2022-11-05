@@ -1,9 +1,9 @@
-package it.tylconsulting.vega.util;
+package it.tylconsulting.vega.util.extjsHelpers;
 
-import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
-import ch.ralscha.extdirectspring.filter.Comparison;
-import ch.ralscha.extdirectspring.filter.Filter;
-import ch.ralscha.extdirectspring.filter.NumericFilter;
+import it.tylconsulting.vega.util.TylUtil;
+import it.tylconsulting.vega.util.extjsHelpers.filters.Comparison;
+import it.tylconsulting.vega.util.extjsHelpers.filters.Filter;
+import it.tylconsulting.vega.util.extjsHelpers.filters.NumericFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,19 +24,20 @@ import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.springframework.util.StringUtils.capitalize;
+
 public class TylExtCriteriaMapper {
     static Logger logger = LoggerFactory.getLogger(TylExtCriteriaMapper.class);
 
-    public static TylRequestParams transformRequest(ExtDirectStoreReadRequest request){
-        TylRequestParams trq = new TylRequestParams();
-        trq.setSize(request.getLimit());
-        trq.setPage(request.getPage()-1);
-        trq.setSort(TylUtil.createSort(request.getSorters()));
-        return trq;
-    }
-    public static Criteria mapCriterias(ExtDirectStoreReadRequest request, Criteria criteria, Class<?> entityClass) {
+//    public static TylRequestParams transformRequest(ExtDirectStoreReadRequest request){
+//        TylRequestParams trq = new TylRequestParams();
+//        trq.setSize(request.getLimit());
+//        trq.setPage(request.getPage()-1);
+//        trq.setSort(TylUtil.createSort(request.getSorters()));
+//        return trq;
+//    }
+    public static Criteria mapCriterias( List<Filter> filters, Criteria criteria, Class<?> entityClass) {
         Criteria myCriteria = criteria;
-        List<Filter> filters= request.getFilters();
         filters.forEach(filter -> {
             try {
                 setFilter(filter, myCriteria, entityClass);
@@ -68,7 +69,7 @@ public class TylExtCriteriaMapper {
         Method meth;
         switch (fieldType) {
             case "StringFilter" -> {
-                ch.ralscha.extdirectspring.filter.StringFilter ralschaStringFilter = (ch.ralscha.extdirectspring.filter.StringFilter) filter;
+                it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter ralschaStringFilter = (it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter) filter;
                 String filterValue = ralschaStringFilter.getValue();
                 StringFilter stringFilter = new StringFilter();
                 switch (ralschaStringFilter.getRawComparison()) {
@@ -83,7 +84,7 @@ public class TylExtCriteriaMapper {
                 meth.invoke(criteria, stringFilter);
             }
             case "BooleanFilter" -> {
-                ch.ralscha.extdirectspring.filter.NumericFilter ralschaBooleanFilter = (ch.ralscha.extdirectspring.filter.NumericFilter) filter;
+                NumericFilter ralschaBooleanFilter = (NumericFilter) filter;
                 boolean booleanRalschaFilter = ((Integer) ralschaBooleanFilter.getValue()) == 1 ? true : false;
                 Boolean filterValue = Boolean.valueOf(booleanRalschaFilter);
                 BooleanFilter booleanFilter = new BooleanFilter();
@@ -131,20 +132,20 @@ public class TylExtCriteriaMapper {
                 mapNumberParameters((NumericFilter) filter, BigDecimalFilter.class, filterValue, criteriaFilter, criteria);
             }
             case "LocalDateFilter" -> {
-                ch.ralscha.extdirectspring.filter.StringFilter dateFilter = (ch.ralscha.extdirectspring.filter.StringFilter) filter;
+                it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter dateFilter = (it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter) filter;
                 String filterValue = dateFilter.getValue();
                 LocalDateFilter criteriaFilter = new LocalDateFilter();
                 mapDateParameters(dateFilter, LocalDateFilter.class, filterValue, criteriaFilter, criteria);
             }
             case "ZonedDateFilter" -> {
-                ch.ralscha.extdirectspring.filter.StringFilter dateFilter = (ch.ralscha.extdirectspring.filter.StringFilter) filter;
+                it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter dateFilter = (it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter) filter;
                 String filterValue = dateFilter.getValue();
                 ZonedDateTimeFilter criteriaFilter = new ZonedDateTimeFilter();
                 mapDateParameters(dateFilter, ZonedDateTimeFilter.class, filterValue, criteriaFilter, criteria);
             }
             default -> { // utilizzato per gli enum
                 // Prendo il valore selezionato, che ricevo come String
-                ch.ralscha.extdirectspring.filter.StringFilter ralschaStringFilter = (ch.ralscha.extdirectspring.filter.StringFilter) filter;
+                it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter ralschaStringFilter = (it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter) filter;
                 String filterSelectionStringValue = ralschaStringFilter.getValue();
 
                 // Determino il type del parametro usato (di tipo enum)
@@ -201,7 +202,7 @@ public class TylExtCriteriaMapper {
     }
 
     private static void mapNumberParameters(NumericFilter filter, Class<?> filterClass, String valueInFilter, RangeFilter<?> criteriaFilter, Criteria criteria) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        String methodName = "set" + TylUtil.capitalize(filter.getField());
+        String methodName = "set" + capitalize(filter.getField());
         Method meth = criteria.getClass().getMethod(methodName, filterClass);
 
         switch (criteriaFilter.getClass().getSimpleName()) {
@@ -232,8 +233,8 @@ public class TylExtCriteriaMapper {
         }
     }
 
-    private static void mapDateParameters(ch.ralscha.extdirectspring.filter.StringFilter filter, Class<?> filterClass, String valueInFilter, RangeFilter<?> criteriaFilter, Criteria criteria) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        String methodName = "set" + TylUtil.capitalize(filter.getField());
+    private static void mapDateParameters(it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter filter, Class<?> filterClass, String valueInFilter, RangeFilter<?> criteriaFilter, Criteria criteria) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        String methodName = "set" + capitalize(filter.getField());
         Method meth = criteria.getClass().getMethod(methodName, filterClass);
 
         switch (criteriaFilter.getClass().getSimpleName()) {
@@ -250,7 +251,7 @@ public class TylExtCriteriaMapper {
         }
     }
 
-    private static void setLocalDateComparison(ch.ralscha.extdirectspring.filter.StringFilter filter, Criteria criteria, LocalDateFilter criteriaFilter, LocalDate value, Method meth) throws InvocationTargetException, IllegalAccessException {
+    private static void setLocalDateComparison(it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter filter, Criteria criteria, LocalDateFilter criteriaFilter, LocalDate value, Method meth) throws InvocationTargetException, IllegalAccessException {
         switch (filter.getRawComparison()) {
             case "==", "eq" -> criteriaFilter.setEquals(value);
             case "!=", "neq" -> criteriaFilter.setNotEquals(value);
@@ -262,7 +263,7 @@ public class TylExtCriteriaMapper {
         meth.invoke(criteria, criteriaFilter);
     }
 
-    private static void setZonedDateTimeComparison(ch.ralscha.extdirectspring.filter.StringFilter filter, Criteria criteria, ZonedDateTimeFilter criteriaFilter, ZonedDateTime value, Method meth) throws InvocationTargetException, IllegalAccessException {
+    private static void setZonedDateTimeComparison(it.tylconsulting.vega.util.extjsHelpers.filters.StringFilter filter, Criteria criteria, ZonedDateTimeFilter criteriaFilter, ZonedDateTime value, Method meth) throws InvocationTargetException, IllegalAccessException {
         switch (filter.getRawComparison()) {
             case "==", "eq" -> criteriaFilter.setEquals(value);
             case "!=", "neq" -> criteriaFilter.setNotEquals(value);

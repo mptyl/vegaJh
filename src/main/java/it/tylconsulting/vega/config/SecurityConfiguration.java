@@ -1,7 +1,8 @@
 package it.tylconsulting.vega.config;
 
-import it.tylconsulting.vega.security.*;
-import it.tylconsulting.vega.security.jwt.*;
+import it.tylconsulting.vega.security.AuthoritiesConstants;
+import it.tylconsulting.vega.security.jwt.JWTConfigurer;
+import it.tylconsulting.vega.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;

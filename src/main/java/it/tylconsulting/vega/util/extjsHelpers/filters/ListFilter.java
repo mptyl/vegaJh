@@ -1,4 +1,4 @@
-package it.tylconsulting.vega.extjs;
+package it.tylconsulting.vega.util.extjsHelpers.filters;
 
 import java.util.List;
 
