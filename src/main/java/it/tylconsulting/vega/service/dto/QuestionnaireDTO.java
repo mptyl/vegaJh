@@ -3,6 +3,7 @@ package it.tylconsulting.vega.service.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import it.tylconsulting.vega.domain.enumeration.QuestionnaireType;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
@@ -61,9 +62,9 @@ public class QuestionnaireDTO implements Serializable {
 
     private Long version;
 
-    private Long modifiedDate;
+    private Instant modifiedDate;
 
-    private Long createdDate;
+    private Instant createdDate;
 
     private QuestionnaireGroupDTO questionnaireGroup;
 
@@ -253,19 +254,19 @@ public class QuestionnaireDTO implements Serializable {
         this.version = version;
     }
 
-    public Long getModifiedDate() {
+    public Instant getModifiedDate() {
         return modifiedDate;
     }
 
-    public void setModifiedDate(Long modifiedDate) {
+    public void setModifiedDate(Instant modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 
-    public Long getCreatedDate() {
+    public Instant getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Long createdDate) {
+    public void setCreatedDate(Instant createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -333,8 +334,8 @@ public class QuestionnaireDTO implements Serializable {
             ", createdBy='" + getCreatedBy() + "'" +
             ", modifiedBy='" + getModifiedBy() + "'" +
             ", version=" + getVersion() +
-            ", modifiedDate=" + getModifiedDate() +
-            ", createdDate=" + getCreatedDate() +
+            ", modifiedDate='" + getModifiedDate() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
             ", questionnaireGroup=" + getQuestionnaireGroup() +
             ", questionnaireProfile=" + getQuestionnaireProfile() +
             "}";

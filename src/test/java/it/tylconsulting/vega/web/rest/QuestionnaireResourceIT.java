@@ -15,6 +15,8 @@ import it.tylconsulting.vega.repository.QuestionnaireRepository;
 import it.tylconsulting.vega.service.criteria.QuestionnaireCriteria;
 import it.tylconsulting.vega.service.dto.QuestionnaireDTO;
 import it.tylconsulting.vega.service.mapper.QuestionnaireMapper;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
@@ -108,13 +110,11 @@ class QuestionnaireResourceIT {
     private static final Long UPDATED_VERSION = 2L;
     private static final Long SMALLER_VERSION = 1L - 1L;
 
-    private static final Long DEFAULT_MODIFIED_DATE = 1L;
-    private static final Long UPDATED_MODIFIED_DATE = 2L;
-    private static final Long SMALLER_MODIFIED_DATE = 1L - 1L;
+    private static final Instant DEFAULT_MODIFIED_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_MODIFIED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
-    private static final Long DEFAULT_CREATED_DATE = 1L;
-    private static final Long UPDATED_CREATED_DATE = 2L;
-    private static final Long SMALLER_CREATED_DATE = 1L - 1L;
+    private static final Instant DEFAULT_CREATED_DATE = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_CREATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final String ENTITY_API_URL = "/api/questionnaires";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -308,8 +308,8 @@ class QuestionnaireResourceIT {
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
             .andExpect(jsonPath("$.[*].modifiedBy").value(hasItem(DEFAULT_MODIFIED_BY)))
             .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.intValue())))
-            .andExpect(jsonPath("$.[*].modifiedDate").value(hasItem(DEFAULT_MODIFIED_DATE.intValue())))
-            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())));
+            .andExpect(jsonPath("$.[*].modifiedDate").value(hasItem(DEFAULT_MODIFIED_DATE.toString())))
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.toString())));
     }
 
     @Test
@@ -346,8 +346,8 @@ class QuestionnaireResourceIT {
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY))
             .andExpect(jsonPath("$.modifiedBy").value(DEFAULT_MODIFIED_BY))
             .andExpect(jsonPath("$.version").value(DEFAULT_VERSION.intValue()))
-            .andExpect(jsonPath("$.modifiedDate").value(DEFAULT_MODIFIED_DATE.intValue()))
-            .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()));
+            .andExpect(jsonPath("$.modifiedDate").value(DEFAULT_MODIFIED_DATE.toString()))
+            .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.toString()));
     }
 
     @Test
@@ -1971,58 +1971,6 @@ class QuestionnaireResourceIT {
 
     @Test
     @Transactional
-    void getAllQuestionnairesByModifiedDateIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where modifiedDate is greater than or equal to DEFAULT_MODIFIED_DATE
-        defaultQuestionnaireShouldBeFound("modifiedDate.greaterThanOrEqual=" + DEFAULT_MODIFIED_DATE);
-
-        // Get all the questionnaireList where modifiedDate is greater than or equal to UPDATED_MODIFIED_DATE
-        defaultQuestionnaireShouldNotBeFound("modifiedDate.greaterThanOrEqual=" + UPDATED_MODIFIED_DATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllQuestionnairesByModifiedDateIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where modifiedDate is less than or equal to DEFAULT_MODIFIED_DATE
-        defaultQuestionnaireShouldBeFound("modifiedDate.lessThanOrEqual=" + DEFAULT_MODIFIED_DATE);
-
-        // Get all the questionnaireList where modifiedDate is less than or equal to SMALLER_MODIFIED_DATE
-        defaultQuestionnaireShouldNotBeFound("modifiedDate.lessThanOrEqual=" + SMALLER_MODIFIED_DATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllQuestionnairesByModifiedDateIsLessThanSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where modifiedDate is less than DEFAULT_MODIFIED_DATE
-        defaultQuestionnaireShouldNotBeFound("modifiedDate.lessThan=" + DEFAULT_MODIFIED_DATE);
-
-        // Get all the questionnaireList where modifiedDate is less than UPDATED_MODIFIED_DATE
-        defaultQuestionnaireShouldBeFound("modifiedDate.lessThan=" + UPDATED_MODIFIED_DATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllQuestionnairesByModifiedDateIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where modifiedDate is greater than DEFAULT_MODIFIED_DATE
-        defaultQuestionnaireShouldNotBeFound("modifiedDate.greaterThan=" + DEFAULT_MODIFIED_DATE);
-
-        // Get all the questionnaireList where modifiedDate is greater than SMALLER_MODIFIED_DATE
-        defaultQuestionnaireShouldBeFound("modifiedDate.greaterThan=" + SMALLER_MODIFIED_DATE);
-    }
-
-    @Test
-    @Transactional
     void getAllQuestionnairesByCreatedDateIsEqualToSomething() throws Exception {
         // Initialize the database
         questionnaireRepository.saveAndFlush(questionnaire);
@@ -2058,58 +2006,6 @@ class QuestionnaireResourceIT {
 
         // Get all the questionnaireList where createdDate is null
         defaultQuestionnaireShouldNotBeFound("createdDate.specified=false");
-    }
-
-    @Test
-    @Transactional
-    void getAllQuestionnairesByCreatedDateIsGreaterThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where createdDate is greater than or equal to DEFAULT_CREATED_DATE
-        defaultQuestionnaireShouldBeFound("createdDate.greaterThanOrEqual=" + DEFAULT_CREATED_DATE);
-
-        // Get all the questionnaireList where createdDate is greater than or equal to UPDATED_CREATED_DATE
-        defaultQuestionnaireShouldNotBeFound("createdDate.greaterThanOrEqual=" + UPDATED_CREATED_DATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllQuestionnairesByCreatedDateIsLessThanOrEqualToSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where createdDate is less than or equal to DEFAULT_CREATED_DATE
-        defaultQuestionnaireShouldBeFound("createdDate.lessThanOrEqual=" + DEFAULT_CREATED_DATE);
-
-        // Get all the questionnaireList where createdDate is less than or equal to SMALLER_CREATED_DATE
-        defaultQuestionnaireShouldNotBeFound("createdDate.lessThanOrEqual=" + SMALLER_CREATED_DATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllQuestionnairesByCreatedDateIsLessThanSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where createdDate is less than DEFAULT_CREATED_DATE
-        defaultQuestionnaireShouldNotBeFound("createdDate.lessThan=" + DEFAULT_CREATED_DATE);
-
-        // Get all the questionnaireList where createdDate is less than UPDATED_CREATED_DATE
-        defaultQuestionnaireShouldBeFound("createdDate.lessThan=" + UPDATED_CREATED_DATE);
-    }
-
-    @Test
-    @Transactional
-    void getAllQuestionnairesByCreatedDateIsGreaterThanSomething() throws Exception {
-        // Initialize the database
-        questionnaireRepository.saveAndFlush(questionnaire);
-
-        // Get all the questionnaireList where createdDate is greater than DEFAULT_CREATED_DATE
-        defaultQuestionnaireShouldNotBeFound("createdDate.greaterThan=" + DEFAULT_CREATED_DATE);
-
-        // Get all the questionnaireList where createdDate is greater than SMALLER_CREATED_DATE
-        defaultQuestionnaireShouldBeFound("createdDate.greaterThan=" + SMALLER_CREATED_DATE);
     }
 
     @Test
@@ -2212,8 +2108,8 @@ class QuestionnaireResourceIT {
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY)))
             .andExpect(jsonPath("$.[*].modifiedBy").value(hasItem(DEFAULT_MODIFIED_BY)))
             .andExpect(jsonPath("$.[*].version").value(hasItem(DEFAULT_VERSION.intValue())))
-            .andExpect(jsonPath("$.[*].modifiedDate").value(hasItem(DEFAULT_MODIFIED_DATE.intValue())))
-            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())));
+            .andExpect(jsonPath("$.[*].modifiedDate").value(hasItem(DEFAULT_MODIFIED_DATE.toString())))
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.toString())));
 
         // Check, that the count call also returns 1
         restQuestionnaireMockMvc

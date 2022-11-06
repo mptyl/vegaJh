@@ -1,4 +1,4 @@
-package it.tylconsulting.vega.util.extjsHelpers.filters;
+package it.tylconsulting.vega.util.extjshelpers.filters;
 
 import org.springframework.core.convert.ConversionService;
 
@@ -7,15 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Filter {
+public class TylFilter {
     private final String field;
     private final String rawComparison;
-    private final Comparison comparison;
 
-    public Filter(String field, String rawComparison, Comparison comparison) {
+    public TylFilter(String field, String rawComparison) {
         this.field = field;
         this.rawComparison = rawComparison;
-        this.comparison = comparison;
     }
 
     public String getField() {
@@ -26,19 +24,15 @@ public class Filter {
         return this.rawComparison;
     }
 
-    public Comparison getComparison() {
-        return this.comparison;
-    }
 
     public String getOperator() {
         return this.rawComparison;
     }
 
-    public static Filter createFilter(Map<String, Object> jsonData, ConversionService conversionService) {
+    public static TylFilter createFilter(Map<String, Object> jsonData, ConversionService conversionService) {
         String type = (String) jsonData.get("type");
         Object source = jsonData.get("value");
         String rawComparison = extractRawComparison(jsonData);
-        Comparison comparisonFromJson = Comparison.fromString(rawComparison);
         String property = (String) jsonData.get("property");
         if (property == null) {
             property = (String) jsonData.get("field");
@@ -47,31 +41,31 @@ public class Filter {
         if (type == null) {
             if (property != null) {
                 if (source instanceof Number) {
-                    return new NumericFilter(property, (Number) source, rawComparison, comparisonFromJson);
+                    return new TylNumericFilter(property, (Number) source, rawComparison);
                 } else if (source instanceof Boolean) {
-                    return new BooleanFilter(property, (Boolean) source, rawComparison, comparisonFromJson);
+                    return new TylBooleanFilter(property, (Boolean) source, rawComparison);
                 } else {
-                    return (Filter) (source instanceof List ? new ListFilter(property, (List) source, rawComparison, comparisonFromJson) : new StringFilter(property, source != null ? source.toString() : null, rawComparison, comparisonFromJson));
+                    return (TylFilter) (source instanceof List ? new TylListFilter(property, (List) source, rawComparison) : new TylStringFilter(property, source != null ? source.toString() : null, rawComparison));
                 }
             } else {
                 return null;
             }
         } else if (!type.equals("numeric") && !type.equals("int") && !type.equals("float") && !type.equals("number")) {
             if (type.equals("string")) {
-                return new StringFilter(property, (String) source, rawComparison, comparisonFromJson);
+                return new TylStringFilter(property, (String) source, rawComparison);
             } else if (type.equals("date")) {
-                return new DateFilter(property, (String) source, rawComparison, comparisonFromJson);
+                return new TylDateFilter(property, (String) source, rawComparison);
             } else if (!type.equals("list") && !type.equals("combo")) {
-                return type.equals("boolean") ? new BooleanFilter(property, (Boolean) source, rawComparison, comparisonFromJson) : null;
+                return type.equals("boolean") ? new TylBooleanFilter(property, (Boolean) source, rawComparison) : null;
             } else if (source instanceof String) {
                 String[] values = ((String) source).split(",");
-                return new ListFilter(property, Arrays.asList(values), rawComparison, comparisonFromJson);
+                return new TylListFilter(property, Arrays.asList(values), rawComparison);
             } else {
-                return new ListFilter(property, (List) source, rawComparison, comparisonFromJson);
+                return new TylListFilter(property, (List) source, rawComparison);
             }
         } else {
             Number value = (Number) conversionService.convert(source, Number.class);
-            return new NumericFilter(property, value, rawComparison, comparisonFromJson);
+            return new TylNumericFilter(property, value, rawComparison);
         }
     }
 

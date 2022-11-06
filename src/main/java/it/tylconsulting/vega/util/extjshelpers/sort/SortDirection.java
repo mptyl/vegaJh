@@ -1,8 +1,8 @@
-package it.tylconsulting.vega.util.extjsHelpers.sort;
+package it.tylconsulting.vega.util.extjshelpers.sort;
 
 public enum SortDirection {
-    ASCENDING("ASC"),
-    DESCENDING("DESC");
+    ASC("ASC"),
+    DESC("DESC");
 
     private final String name;
 
@@ -15,10 +15,10 @@ public enum SortDirection {
     }
 
     public static SortDirection fromString(String name) {
-        if (ASCENDING.getName().equalsIgnoreCase(name)) {
-            return ASCENDING;
+        if (ASC.getName().equalsIgnoreCase(name)) {
+            return ASC;
         } else {
-            return DESCENDING.getName().equalsIgnoreCase(name) ? DESCENDING : null;
+            return DESC.getName().equalsIgnoreCase(name) ? DESC : null;
         }
     }
 }

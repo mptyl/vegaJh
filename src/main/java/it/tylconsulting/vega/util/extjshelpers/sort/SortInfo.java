@@ -1,16 +1,17 @@
-package it.tylconsulting.vega.util.extjsHelpers.sort;
-
-import ch.ralscha.extdirectspring.bean.SortDirection;
+package it.tylconsulting.vega.util.extjshelpers.sort;
 
 import java.util.Map;
 
 public class SortInfo {
-    private final String property;
-    private final SortDirection direction;
+    private  String property;
+    private  SortDirection direction;
 
     public SortInfo(String property, SortDirection direction) {
         this.property = property;
         this.direction = direction;
+    }
+
+    public SortInfo() {
     }
 
     public String getProperty() {

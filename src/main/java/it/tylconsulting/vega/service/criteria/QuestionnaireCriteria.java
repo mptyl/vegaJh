@@ -85,9 +85,9 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
 
     private LongFilter version;
 
-    private LongFilter modifiedDate;
+    private InstantFilter modifiedDate;
 
-    private LongFilter createdDate;
+    private InstantFilter createdDate;
 
     private LongFilter qeGroupId;
 
@@ -481,33 +481,33 @@ public class QuestionnaireCriteria implements Serializable, Criteria {
         this.version = version;
     }
 
-    public LongFilter getModifiedDate() {
+    public InstantFilter getModifiedDate() {
         return modifiedDate;
     }
 
-    public LongFilter modifiedDate() {
+    public InstantFilter modifiedDate() {
         if (modifiedDate == null) {
-            modifiedDate = new LongFilter();
+            modifiedDate = new InstantFilter();
         }
         return modifiedDate;
     }
 
-    public void setModifiedDate(LongFilter modifiedDate) {
+    public void setModifiedDate(InstantFilter modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 
-    public LongFilter getCreatedDate() {
+    public InstantFilter getCreatedDate() {
         return createdDate;
     }
 
-    public LongFilter createdDate() {
+    public InstantFilter createdDate() {
         if (createdDate == null) {
-            createdDate = new LongFilter();
+            createdDate = new InstantFilter();
         }
         return createdDate;
     }
 
-    public void setCreatedDate(LongFilter createdDate) {
+    public void setCreatedDate(InstantFilter createdDate) {
         this.createdDate = createdDate;
     }
 

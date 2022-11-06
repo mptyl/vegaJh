@@ -101,11 +101,11 @@
     },
     {
       "fieldName": "modifiedDate",
-      "fieldType": "Long"
+      "fieldType": "Instant"
     },
     {
       "fieldName": "createdDate",
-      "fieldType": "Long"
+      "fieldType": "Instant"
     }
   ],
   "fluentMethods": true,

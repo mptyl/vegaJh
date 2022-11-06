@@ -1,17 +1,19 @@
-package it.tylconsulting.vega.extjs;
+package it.tylconsulting.vega.web.extjs;
 
-import ch.ralscha.extdirectspring.bean.SortInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import it.tylconsulting.vega.domain.TestEntity;
-import it.tylconsulting.vega.util.extjsHelpers.ExtResponse;
-import it.tylconsulting.vega.util.extjsHelpers.SortAdapter;
-import it.tylconsulting.vega.util.extjsHelpers.filters.Filter;
-import it.tylconsulting.vega.service.TestEntityQueryService;
-import it.tylconsulting.vega.service.TestEntityService;
 import it.tylconsulting.vega.service.criteria.TestEntityCriteria;
 import it.tylconsulting.vega.service.dto.TestEntityDTO;
-import it.tylconsulting.vega.util.extjsHelpers.TylExtCriteriaMapper;
-import it.tylconsulting.vega.util.TylUtil;
-import it.tylconsulting.vega.web.rest.QuestionnaireProfileResource;
+import it.tylconsulting.vega.util.extjshelpers.ExtResponse;
+import it.tylconsulting.vega.util.extjshelpers.SortAdapter;
+import it.tylconsulting.vega.util.extjshelpers.TylExtCriteriaMapper;
+import it.tylconsulting.vega.util.extjshelpers.filters.ExtJsFilter;
+import it.tylconsulting.vega.util.extjshelpers.filters.TylFilter;
+import it.tylconsulting.vega.service.TestEntityQueryService;
+import it.tylconsulting.vega.service.TestEntityService;
+import it.tylconsulting.vega.util.extjshelpers.sort.SortInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +28,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/extjs")
 public class TestEntityController {
 
-    private final Logger log = LoggerFactory.getLogger(QuestionnaireProfileResource.class);
+    private final Logger log = LoggerFactory.getLogger(TestEntityController.class);
 
     @Autowired
     TestEntityQueryService testEntityQueryService;
@@ -42,28 +43,30 @@ public class TestEntityController {
 
     @GetMapping("/testentities")
     @ResponseBody
-    public ExtResponse getAllQuestionnaires(@RequestParam(name="limit") Integer size,
+    public ExtResponse getAllTestentities(@RequestParam(name="limit") Integer size,
                                             @RequestParam Integer page,
-                                            @RequestParam Optional<List<SortInfo>> sort,
-                                            @RequestParam Optional<List<Filter>> filter) {
+                                            @RequestParam(required=false) String sort,
+                                            @RequestParam(required=false) String filter) throws JsonProcessingException {
 
         TestEntityCriteria testEntityCriteria = new TestEntityCriteria();
-
+        ObjectMapper objectMapper = new ObjectMapper();
         Pageable pageable;
         Page<TestEntityDTO> resultPage;
-        if (sort.isPresent()) {
+        if (sort !=null) {
+            List<SortInfo> jsonSort = objectMapper.readValue(sort, new TypeReference<>(){});
             log.debug("sort is present");
-            Sort springSort = SortAdapter.createSort(sort.get());
+            Sort springSort = SortAdapter.createSort(jsonSort);
             pageable = PageRequest.of(--page, size, springSort);
         } else
             pageable = PageRequest.of(--page, size);
-        if(filter.isPresent()) {
+        if(filter!=null) {
             log.debug("filter is present");
-            TylExtCriteriaMapper.mapCriterias(filter.get(), testEntityCriteria, TestEntity.class);
+            List<ExtJsFilter> jsonFilter = objectMapper.readValue(filter, new TypeReference<>(){});
+            List<TylFilter> tylFilters= TylExtCriteriaMapper.transformFilter(jsonFilter, TestEntity.class);
+            TylExtCriteriaMapper.mapCriterias(tylFilters, testEntityCriteria, TestEntity.class);
         }
         resultPage = testEntityQueryService.findByCriteria(testEntityCriteria, pageable);
         return new ExtResponse(resultPage.getTotalElements(), resultPage.getContent());
-
     }
 }
 

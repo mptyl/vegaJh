@@ -3,6 +3,7 @@ package it.tylconsulting.vega.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import it.tylconsulting.vega.domain.enumeration.QuestionnaireType;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -97,10 +98,10 @@ public class Questionnaire implements Serializable {
     private Long version;
 
     @Column(name = "modified_date")
-    private Long modifiedDate;
+    private Instant modifiedDate;
 
     @Column(name = "created_date")
-    private Long createdDate;
+    private Instant createdDate;
 
     @OneToMany(mappedBy = "questionnaire")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -416,29 +417,29 @@ public class Questionnaire implements Serializable {
         this.version = version;
     }
 
-    public Long getModifiedDate() {
+    public Instant getModifiedDate() {
         return this.modifiedDate;
     }
 
-    public Questionnaire modifiedDate(Long modifiedDate) {
+    public Questionnaire modifiedDate(Instant modifiedDate) {
         this.setModifiedDate(modifiedDate);
         return this;
     }
 
-    public void setModifiedDate(Long modifiedDate) {
+    public void setModifiedDate(Instant modifiedDate) {
         this.modifiedDate = modifiedDate;
     }
 
-    public Long getCreatedDate() {
+    public Instant getCreatedDate() {
         return this.createdDate;
     }
 
-    public Questionnaire createdDate(Long createdDate) {
+    public Questionnaire createdDate(Instant createdDate) {
         this.setCreatedDate(createdDate);
         return this;
     }
 
-    public void setCreatedDate(Long createdDate) {
+    public void setCreatedDate(Instant createdDate) {
         this.createdDate = createdDate;
     }
 
@@ -545,8 +546,8 @@ public class Questionnaire implements Serializable {
             ", createdBy='" + getCreatedBy() + "'" +
             ", modifiedBy='" + getModifiedBy() + "'" +
             ", version=" + getVersion() +
-            ", modifiedDate=" + getModifiedDate() +
-            ", createdDate=" + getCreatedDate() +
+            ", modifiedDate='" + getModifiedDate() + "'" +
+            ", createdDate='" + getCreatedDate() + "'" +
             "}";
     }
 }

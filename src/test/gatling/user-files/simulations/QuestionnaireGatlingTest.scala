@@ -93,8 +93,8 @@ class QuestionnaireGatlingTest extends Simulation {
                 , "createdBy":"SAMPLE_TEXT"
                 , "modifiedBy":"SAMPLE_TEXT"
                 , "version":"0"
-                , "modifiedDate":"0"
-                , "createdDate":"0"
+                , "modifiedDate":"2020-01-01T00:00:00.000Z"
+                , "createdDate":"2020-01-01T00:00:00.000Z"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_questionnaire_url"))).exitHereIfFailed

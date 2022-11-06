@@ -13,12 +13,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class TestEntityGenerator {
@@ -44,6 +43,7 @@ public class TestEntityGenerator {
             List<TestEntity> testEntityList= new ArrayList<>();
             for (int i = 0; i < NUMBEROFRECORDSTOGENERATE; i++) {
                 TestEntity testEntity=new TestEntity();
+                testEntity.setShortField(faker.number().randomDigitNotZero());
                 testEntity.setIntegerField(faker.number().randomDigitNotZero());
                 testEntity.setLongField(faker.number().randomNumber());
                 testEntity.setFloatField((float) faker.number().randomNumber());
@@ -51,13 +51,27 @@ public class TestEntityGenerator {
                 testEntity.setBigDecimalField(BigDecimal.valueOf(faker.number().randomNumber()));
                 testEntity.setBooleanField(faker.random().nextBoolean());
                 testEntity.setStringField(faker.dog().name());
+
                 Date date = faker.date().birthday();
                 LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 testEntity.setLocalDateField(localDate);
-                testEntity.setDurationField(Long.valueOf(faker.number().numberBetween(10000L,100000L)));
+
+                Date date2 = faker.date().birthday();
+                ZonedDateTime zonedDateTime = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().atZone(ZoneId.of("CET"));
+                testEntity.setZonedDateField(zonedDateTime);
+
+                testEntity.setDurationField(Duration.ofDays(Long.valueOf(faker.number().numberBetween(10000L,100000L))));
+
+                Date date3 = faker.date().birthday();
+                Instant instant = date3.toInstant();
+                testEntity.setInstantField(instant);
+
                 int index=faker.number().numberBetween(0,3);
                 testEntity.setQuestionnaireType(QuestionnaireType.values()[index]);
                 testEntityList.add(testEntity);
+
+                UUID uuidField = new UUID(faker.random().nextLong(), faker.random().nextLong());
+                testEntity.setUuidField(uuidField);
 
             }
             testEntityRepository.saveAll(testEntityList);

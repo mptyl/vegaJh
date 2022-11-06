@@ -1,7 +1,7 @@
-package it.tylconsulting.vega.util.extjsHelpers;
+package it.tylconsulting.vega.util.extjshelpers;
 
-import ch.ralscha.extdirectspring.bean.SortDirection;
-import ch.ralscha.extdirectspring.bean.SortInfo;
+import it.tylconsulting.vega.util.extjshelpers.sort.SortDirection;
+import it.tylconsulting.vega.util.extjshelpers.sort.SortInfo;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -27,7 +27,7 @@ public class SortAdapter {
 
     private static Sort setSort(Sort sort, SortInfo si) {
         sort = Sort.by(si.getProperty());
-        if (si.getDirection().equals(SortDirection.ASCENDING))
+        if (si.getDirection().equals(SortDirection.ASC))
             sort = sort.ascending();
         else
             sort = sort.descending();
