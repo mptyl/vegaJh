@@ -22,10 +22,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -68,5 +65,10 @@ public class TestEntityController {
         resultPage = testEntityQueryService.findByCriteria(testEntityCriteria, pageable);
         return new ExtResponse(resultPage.getTotalElements(), resultPage.getContent());
     }
+    @PostMapping("/deleteTestEntities")
+    public void deleteTestEntities(@RequestBody List<TestEntity> testEntities ){
+        System.out.println(testEntities);
+    }
+
 }
 
