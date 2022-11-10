@@ -1,6 +1,5 @@
-package it.tylconsulting.vega.util.extjshelpers;
+package it.tylconsulting.vega.util.extjshelpers.filters;
 
-import it.tylconsulting.vega.util.extjshelpers.filters.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +15,6 @@ import java.text.ParseException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -27,7 +25,7 @@ import static org.springframework.util.StringUtils.capitalize;
 public class TylExtCriteriaMapper {
     static Logger logger = LoggerFactory.getLogger(TylExtCriteriaMapper.class);
 
-    public static List<TylFilter> transformFilter(List<ExtJsFilter> extjsFilters, Class<?> entityClass) {
+    public static List<TylFilter> transformFilter(List<FilterParam> extjsFilters, Class<?> entityClass) {
         return extjsFilters.stream().map(filter -> {
             try {
                 return toTylFilter(filter, entityClass);
@@ -37,34 +35,34 @@ public class TylExtCriteriaMapper {
         }).toList();
     }
 
-    private static TylFilter toTylFilter(ExtJsFilter ejs, Class<?> entityClass) throws NoSuchFieldException {
+    private static TylFilter toTylFilter(FilterParam ejs, Class<?> entityClass) throws NoSuchFieldException {
         String property = ejs.getProperty();
         Field propertyField = entityClass.getDeclaredField(property);
         String fieldType = propertyField.getType().getSimpleName();
         switch (fieldType) {
             case "Boolean" -> {
-                return new TylBooleanFilter(ejs.getProperty(), Boolean.valueOf(Integer.valueOf(ejs.getValue()) == 1 ? true : false), ejs.getOperator());
+                return new TylBooleanFilter(ejs.getProperty(), (Integer) ejs.getValue() == 1 ? true : false, ejs.getOperator());
             }
             case "Short" -> {
-                return new TylNumericFilter(ejs.getProperty(), Short.valueOf(ejs.getValue()), ejs.getOperator());
+                return new TylNumericFilter(ejs.getProperty(), ((Integer)ejs.getValue()).shortValue(), ejs.getOperator());
             }
             case "Integer" -> {
-                return new TylNumericFilter(ejs.getProperty(), Integer.valueOf(ejs.getValue()), ejs.getOperator());
+                return new TylNumericFilter(ejs.getProperty(), (Integer)ejs.getValue(), ejs.getOperator());
             }
             case "Long", "Duration" -> {
-                return new TylNumericFilter(ejs.getProperty(), Long.valueOf(ejs.getValue()), ejs.getOperator());
+                return new TylNumericFilter(ejs.getProperty(), ((Number)ejs.getValue()).longValue(), ejs.getOperator());
             }
             case "Float" -> {
-                return new TylNumericFilter(ejs.getProperty(), Float.valueOf(ejs.getValue()), ejs.getOperator());
+                return new TylNumericFilter(ejs.getProperty(), ((Number)ejs.getValue()).floatValue(), ejs.getOperator());
             }
             case "Double" -> {
-                return new TylNumericFilter(ejs.getProperty(), Double.valueOf(ejs.getValue()), ejs.getOperator());
+                return new TylNumericFilter(ejs.getProperty(), ((Number)ejs.getValue()).doubleValue(), ejs.getOperator());
             }
             case "BigDecimal" -> {
-                return new TylNumericFilter(ejs.getProperty(), new BigDecimal(ejs.getValue()), ejs.getOperator());
+                return new TylNumericFilter(ejs.getProperty(), BigDecimal.valueOf(((Number)ejs.getValue()).doubleValue()), ejs.getOperator());
             }
             default -> { // compresi String, UUID e le Date
-                return new TylStringFilter(ejs.getProperty(), ejs.getValue(), ejs.getOperator());
+                return new TylStringFilter(ejs.getProperty(), (String)ejs.getValue(), ejs.getOperator());
             }
         }
     }

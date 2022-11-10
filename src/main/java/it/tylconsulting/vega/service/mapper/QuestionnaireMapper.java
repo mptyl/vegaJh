@@ -20,10 +20,13 @@ public interface QuestionnaireMapper extends EntityMapper<QuestionnaireDTO, Ques
     @Named("questionnaireGroupId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "name", source = "name")
     QuestionnaireGroupDTO toDtoQuestionnaireGroupId(QuestionnaireGroup questionnaireGroup);
+
 
     @Named("questionnaireProfileId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "description", source = "description")
     QuestionnaireProfileDTO toDtoQuestionnaireProfileId(QuestionnaireProfile questionnaireProfile);
 }

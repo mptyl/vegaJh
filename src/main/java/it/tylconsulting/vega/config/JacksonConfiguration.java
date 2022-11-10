@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.ser.DurationSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.InstantSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.ZonedDateTimeSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.zalando.problem.jackson.ProblemModule;
@@ -16,6 +17,8 @@ import org.zalando.problem.violations.ConstraintViolationProblemModule;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Configuration
 public class JacksonConfiguration {
@@ -28,6 +31,8 @@ public class JacksonConfiguration {
     public JavaTimeModule javaTimeModule() {
         var javaTimeModule = new JavaTimeModule();
         javaTimeModule.addSerializer(Duration.class, new DurationToLongSerializer());
+        javaTimeModule.addSerializer(Instant.class, new InstantToLongSerializer());
+        javaTimeModule.addSerializer(ZonedDateTime.class, new ZonedDateTimeSerializer(DateTimeFormatter.ISO_LOCAL_DATE));
         return javaTimeModule;
     }
 

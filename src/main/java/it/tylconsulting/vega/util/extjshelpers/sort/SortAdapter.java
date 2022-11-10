@@ -1,4 +1,4 @@
-package it.tylconsulting.vega.util.extjshelpers;
+package it.tylconsulting.vega.util.extjshelpers.sort;
 
 import it.tylconsulting.vega.util.extjshelpers.sort.SortDirection;
 import it.tylconsulting.vega.util.extjshelpers.sort.SortInfo;

@@ -9,6 +9,11 @@ import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 /**
  * A Questionnaire.
@@ -17,6 +22,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(name = "questionnaire")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
+@EntityListeners(value= AuditingEntityListener.class)
 public class Questionnaire implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -89,18 +95,23 @@ public class Questionnaire implements Serializable {
     private Integer attachments;
 
     @Column(name = "created_by")
+    @CreatedBy
     private String createdBy;
 
     @Column(name = "modified_by")
+    @LastModifiedBy
     private String modifiedBy;
 
     @Column(name = "version")
+    @Version
     private Long version;
 
     @Column(name = "modified_date")
+    @LastModifiedDate
     private Instant modifiedDate;
 
     @Column(name = "created_date")
+    @CreatedDate
     private Instant createdDate;
 
     @OneToMany(mappedBy = "questionnaire")
