@@ -1,9 +1,18 @@
 package it.tylconsulting.vega.util.extjshelpers.protocol;
 
-public class ExtLoadResponse {
+public class ExtLoadResponse<T> {
     boolean success=true;
-    Object data;
+    T data;
     String errorMessage;
+
+    public ExtLoadResponse(boolean success, T data, String errorMessage) {
+        this.success = success;
+        this.data = data;
+        this.errorMessage = errorMessage;
+    }
+
+    public ExtLoadResponse() {
+    }
 
     public boolean isSuccess() {
         return success;
@@ -13,11 +22,11 @@ public class ExtLoadResponse {
         this.success = success;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

@@ -1,0 +1,45 @@
+{
+  "total" : 1000,
+  "records" : [ {
+    "id" : 2100,
+    "name" : "Red The Bum",
+    "questionnaireVersion" : "Ver05",
+    "title" : "Chuck Norris can divide by zero.",
+    "questionnaireGroup" : {
+      "id" : 1011,
+      "name" : "Rita Booke",
+      "description" : null
+    },
+    "questionnaireProfile" : {
+      "id" : 1055,
+      "description" : "EBLG"
+    }
+  }, {
+    "id" : 2099,
+    "name" : "Goldie Wilson",
+    "questionnaireVersion" : "Ver32",
+    "title" : "For Chuck Norris, NP-Hard = O(1).",
+    "questionnaireGroup" : {
+      "id" : 1002,
+      "name" : "Holly Wood",
+      "description" : null
+    },
+    "questionnaireProfile" : {
+      "id" : 1053,
+      "description" : "GCHI"
+    }
+  }, {
+    "id" : 2098,
+    "name" : "Milton Baines",
+    "questionnaireVersion" : "Ver01",
+    "title" : "When a bug sees Chuck Norris, it flees screaming in terror, and then immediately self-destructs to avoid being roundhouse-kicked.",
+    "questionnaireGroup" : {
+      "id" : 1008,
+      "name" : "Tommy Hawk",
+      "description" : null
+    },
+    "questionnaireProfile" : {
+      "id" : 1059,
+      "description" : "URWW"
+    }
+  }]}
